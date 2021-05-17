@@ -1,11 +1,23 @@
 const SET_GAME = 'game/setGame'
+const SET_TOPGAME = 'topGame/setTopGame'
 
 const setGame = (game) => ({
   type: SET_GAME,
   game
 })
 
+const setTopGame = (topGame) => ({
+  type: SET_TOPGAME,
+  topGame
+})
 
+
+export const getTopGames = () => async(dispatch) => {
+  const res = await fetch('api/games/top')
+  const data = await res.json()
+  dispatch(setTopGame(data.topGame))
+  return res
+}
 
 export const getGames = () => async(dispatch) => {
   const res = await fetch('api/games')
@@ -24,6 +36,12 @@ function reducer(state ={}, action) {
        newState[item.id] = item
      });
      return newState
+    case SET_TOPGAME:
+      newState ={}
+      action.topGame.forEach(item => {
+        newState[item.id] = item
+      })
+      return newState
     default:
       return state
   }

@@ -1,0 +1,37 @@
+.game-div {
+  width: 306px;
+  min-width: 306px;
+  height: 395px;
+  box-sizing: border-box;
+  box-shadow: 0 8px 8px 2px rgb(0 0 0 / 20%);
+  margin-left: 5px;
+  background-color: #b38cfb;
+  margin-bottom: 2%;
+}
+
+.game-img {
+  vertical-align: middle;
+  border: 0;
+  width: 304px;
+  height: 254px;
+}
+
+.game-info {
+  height: 70px;
+  color: #999;
+  text-align: center;
+}
+
+.title,
+.category {
+  text-decoration: none;
+}
+
+.title {
+  font-size: 30px;
+  color: black;
+}
+
+.rating {
+  color: black;
+}

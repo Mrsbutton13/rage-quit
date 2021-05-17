@@ -17,5 +17,11 @@ def api_get_games():
   # Return game in a dict with games in a list
   return {'game': [game for game in data]}
 
+
+@game_routes.route('/top')
+def api_get_top_games():
+  req = requests.get(f"https://api.rawg.io/api/games?key={API_KEY}&ordering=ratings&page_size=6").json()
+  data = req.get('results')
+  return {'topGame': [topGame for topGame in data]}
   
 
