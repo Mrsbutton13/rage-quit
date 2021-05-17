@@ -15,6 +15,7 @@ const setTopGame = (topGame) => ({
 export const getTopGames = () => async(dispatch) => {
   const res = await fetch('api/games/top')
   const data = await res.json()
+  console.log(data.topGame)
   dispatch(setTopGame(data.topGame))
   return res
 }
@@ -41,6 +42,7 @@ function reducer(state ={}, action) {
       action.topGame.forEach(item => {
         newState[item.id] = item
       })
+      console.log(newState)
       return newState
     default:
       return state

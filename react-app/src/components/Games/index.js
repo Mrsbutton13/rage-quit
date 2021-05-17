@@ -13,7 +13,7 @@ function Home () {
 
   useEffect(async() =>{
     await dispatch(getGenres())
-    await dispatch(getGames())
+    await dispatch(getTopGames())
     await setLoaded(true)
   },[dispatch])
 
