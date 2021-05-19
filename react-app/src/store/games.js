@@ -23,6 +23,7 @@ export const getTopGames = () => async(dispatch) => {
 export const getGames = () => async(dispatch) => {
   const res = await fetch('api/games')
   const data = await res.json()
+  console.log(data)
   dispatch(setGame(data.game))
   return res
 }

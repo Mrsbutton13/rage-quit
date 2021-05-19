@@ -5,6 +5,13 @@ import Carousel from 'react-bootstrap/Carousel'
 import { getGenres } from '../../store/genres'
 import { NavLink } from 'react-router-dom'
 import Game from '../GameComponent'
+import GTA5 from '../../images/GTA5.png'
+import Ark from '../../images/Ark.png'
+import RainbowSix from '../../images/RainbowSix.png'
+import WOW from '../../images/WOW.png'
+import Fortnite from '../../images/Fortnite.png'
+import logo from '../../images/logo.png'
+import './home.css'
 
 function Home () {
   const dispatch = useDispatch()
@@ -13,7 +20,7 @@ function Home () {
 
   useEffect(async() =>{
     await dispatch(getGenres())
-    await dispatch(getTopGames())
+    await dispatch(getGames())
     await setLoaded(true)
   },[dispatch])
 
@@ -21,8 +28,30 @@ function Home () {
     <>
     {loaded && (
       <>
-      <h1> Games </h1>
-      <CategorizedGames/>
+      <Carousel className='carousel' fade indicators={false}>
+        <Carousel.Item  interval={1000}>
+          <img className='carousel-img' src={Ark}/>
+        </Carousel.Item>
+        <Carousel.Item  interval={1000}>
+          <img className='carousel-img' src={WOW}/>
+        </Carousel.Item>
+        <Carousel.Item  interval={1000}>
+          <img className='carousel-img' src={Fortnite}/>
+        </Carousel.Item>
+        <Carousel.Item  interval={1000}>
+          <img className='carousel-img' src={RainbowSix}/>
+        </Carousel.Item>
+        <Carousel.Item  interval={1000}>
+          <img className='carousel-img' src={GTA5}/>
+        </Carousel.Item>
+      </Carousel>
+      <div className='info'>
+        <img className='info-logo' src={logo}/>
+        <span className='welcome'>Welcome to Rage-Quit! Where gamers alike can get to know each other, befriend each other, and game with each other. Find gamers who like the same games you like and play on the same platforms you play on. Get your gaming on!</span>
+      </div>
+      <div className='container'> 
+        <CategorizedGames />
+      </div>
       </>
     )}
     </>
@@ -30,38 +59,24 @@ function Home () {
 }
 
 export const CategorizedGames = () => {
-  const games = useSelector((state) => Object.values(state.topGame))
+  const games = useSelector((state) => Object.values(state.game))
   const genres = useSelector((state) => Object.values(state.genre))
   console.log(genres)
   console.log(games)
 
   useEffect(async () => {
-    await getTopGames()
+    await getGames()
     await getGenres()
   }, [])
 
   return (
     <>
-    {genres.map(genre => (
-      <div key={genre.id} className='genre-container'>
-        <div className='more-container'>
-          <div className='cat-title'>{genre.name}</div>
-            <NavLink to={`/category/${genre.id}`} className='more'>Find More --></NavLink>
-          </div>
-        <div className='game-container'>
-         {genre.games.map(game => (
-           <>
-           {games.map(g => (
-             (game.name === g.name ? (
-               <>
-                <Game g={g} genre={genre}/>
-               </>
-             ):null)
-           ))}
-           </>
-         ))}
+      {games.map(game => (
+          <>
+        <div  key={game.id} className='game-container'>
+          <Game key={game.id} game={game}/>
         </div>
-      </div>
+        </>
     ))}
     </>
   )
