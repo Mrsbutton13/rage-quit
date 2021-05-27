@@ -2,23 +2,24 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/NavBar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
-import { authenticate } from "./services/auth";
-import Home from "./components/Games";
+import UsersList from "./components/User/UsersList";
+import User from "./components/User/User";
+import SplashPage from "./components/SplashPage";
+import Profile from "./components/Profile";
+import { setCurrentUser } from './store/currentUser'
+import { useDispatch, useSelector } from 'react-redux'
+import GamePage from "./components/GamePage";
+import Category from "./components/Category";
+import Footer from "./components/Footer";
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
+  const dispatch = useDispatch()
   const [loaded, setLoaded] = useState(false);
-
   useEffect(() => {
     (async() => {
-      const user = await authenticate();
-      if (!user.errors) {
-        setAuthenticated(true);
-      }
+      await dispatch(setCurrentUser())
       setLoaded(true);
     })();
   }, []);
@@ -29,28 +30,31 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      <NavBar/>
       <Switch>
         <Route path="/login" exact={true}>
-          <LoginForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
+          <LoginForm/>
         </Route>
         <Route path="/sign-up" exact={true}>
-          <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+          <SignUpForm />
         </Route>
-        <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
+        <Route path="/users" exact={true} >
           <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
+        </Route>
+        <Route path="/users/:userId" exact={true} >
           <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
-        <Route path='/games'>
-          <Home/>
+        </Route>
+        <Route path="/" exact={true} >
+          <SplashPage/>
+        </Route>
+        <Route path='/profile' exact={true} >
+          <Profile/>
+        </Route>
+        <Route path='/games/:gameId'>
+          <GamePage/>
+        </Route>
+        <Route path='/category/:id' exact={true} >
+          <Category />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -1,0 +1,8 @@
+.comment {
+  text-decoration: none;
+  text-align: start;
+}
+
+.comment:hover {
+  text-decoration: none;
+}

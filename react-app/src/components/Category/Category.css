@@ -1,0 +1,24 @@
+.category-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 2%;
+}
+
+.category-titlel{
+   font-family: 'RocknRoll One',
+   sans-serif;
+   color: #278caa;
+   text-shadow: 5px 4px #56503c;
+   font-size: 70px;
+   width: fit-content;
+
+  }
+  
+  .title-container{
+    height: 110px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }

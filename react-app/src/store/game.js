@@ -1,23 +1,24 @@
-const SET_GENRE = 'genre/setGenre'
+const SET_GAME = 'game/setGame'
 
-const setGenre = (genre) => ({
-  type: SET_GENRE,
-  genre
+const setGame = (game) => ({
+  type: SET_GAME,
+  game,
 })
 
-export const getGenres = () => async(dispatch) => {
-  const res = await fetch('api/genres')
+export const getGames = () => async (dispatch) => {
+  const res = await fetch('/api/games')
   const data = await res.json()
-  dispatch(setGenre(data.genre))
+  dispatch(setGame(data.game))
   return res
 }
+
 
 function reducer(state = {}, action) {
   let newState;
   switch (action.type) {
-    case SET_GENRE:
+    case SET_GAME:
       newState = {}
-      action.genre.forEach(item => {
+      action.game.forEach(item => {
         newState[item.id] = item
       })
       return newState

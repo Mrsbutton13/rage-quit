@@ -1,0 +1,152 @@
+.logo {
+  height: 60px;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  border: 0;
+}
+
+.dropdown {
+  width: 314px;
+  display: flex;
+}
+
+
+.dropdown-img{
+ width: 125px;
+ height: 65px;
+ margin-right: 0;
+ margin-left: 25px;
+ padding: 0;
+ border-radius: 4px;
+ background-color: #b38cfb;
+}
+
+.fa-plus-circle{
+  font-size: 20px;
+  margin-top: 17px;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin-top: 75px;
+  z-index: 2;
+}
+.menu{
+  display: flex;
+  flex-direction: row;
+  width: 110px;
+  border-radius: 4px;
+}
+
+
+.active{
+  text-decoration: none;
+}
+
+.category1 {
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: white;
+  height: 30px;
+  font-size: 20px;
+  padding-inline-start: 13px;
+  width: 240px;
+  padding-bottom: 5px;
+  margin-left: 20px;
+  color: black;
+}
+
+.category1:hover,
+.profile:hover,
+.profile1:hover {
+  font-size: 22px;
+  text-decoration: none;
+}
+
+.right-side{
+  display: flex;
+
+}
+
+.user {
+   border-radius: 50%;
+   height: 60px;
+}
+
+.user-button {
+  padding: 0;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  background-color: #b38cfb;
+}
+
+.logout {
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: white;
+  height: 24px;
+  font-size: 15px;
+  padding-inline-start: 13px;
+}
+
+
+.profile {
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: white;
+  height: 30px;
+  font-size: 20px;
+  padding-inline-start: 13px;
+  width: 165px;
+  padding-bottom: 5px;
+}
+
+
+.profile1 {
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: white;
+  height: 30px;
+  font-size: 20px;
+  padding-inline-start: 13px;
+  width: 165px;
+  padding-bottom: 5px;
+  margin: 10px;
+  color: black;
+}
+
+.profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  margin-top: 75px;
+  position: absolute;
+  background-color: #b38cfb;
+  border-radius: 4px; 
+  z-index: 3;
+  right: 10px;
+}
+
+.dpad {
+  background-color: white;
+  border: 1px solid black;
+  height: 60px;
+  width: 30px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.profile-position,
+.menu-position {
+  position: relative;
+}
+
+.menu-position{
+  right: 145px;
+}
+
+.middle {
+  margin-left: auto;
+}

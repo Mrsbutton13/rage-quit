@@ -1,0 +1,20 @@
+.user-game-div {
+  width: 150px;
+  height: 200px;
+  box-sizing: border-box;
+  box-shadow: 0 8px 8px 2px rgb(0 0 0 / 20%);
+  margin-left: 5px;
+  background-color: rgb(109, 92, 153, 20%);
+  margin-bottom: 2%;
+}
+
+.user-game-img {
+  vertical-align: middle;
+  border: 0;
+  width: 150px;
+  height: 150px;
+}
+
+.user-game-info{
+  text-align: center;
+}

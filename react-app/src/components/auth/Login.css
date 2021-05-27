@@ -1,0 +1,77 @@
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+
+.login-form {
+  position: absolute;
+  left: 30%;
+  height: 100vh;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(0, 0, 0, 45%);
+  padding-top: 3%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.login-img {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+.email,
+.password {
+  font-size: 23px;
+  font-family: 'RocknRoll One',
+  sans-serif;
+  color: #278caa;
+  text-shadow: 1px 2px #56503c;
+  margin-top: 10px;
+}
+
+
+.email-div,
+.password-div{
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      padding-left: 70px;
+      padding-right: 70px;
+}
+
+.email-input,
+.password-input {
+  width: 17rem;
+  height: 2rem;
+  background: #f2f1f9;
+  border: none;
+  padding: 4px;
+  border-radius: 4px;
+  align-self: center;
+}
+
+
+.submit{
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: white;
+  height: 2rem;
+  font-size: 20px;
+  width: 85px;
+  align-self: center;
+  margin-top: 10px;
+}
+
+.account {
+   font-size: 80px;
+   font-family: 'RocknRoll One',
+   sans-serif;
+   color: #278caa;
+   text-shadow: 2px 3px #56503c;
+   text-align: center;
+}

@@ -1,0 +1,38 @@
+.post-container {
+  width: 100%;
+  background-color: #b38cfb;
+  box-shadow: 0 -1px 5px 0px rgb(0 0 0 / 30%);
+  padding: 20px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.post-body {
+  margin-left: 20%;
+  font-family: 'RocknRoll One',
+  sans-serif;
+  overflow-wrap: break-word;
+}
+
+.post-user {
+  border-radius: 50%;
+  width: 65px;
+}
+
+.post-username {
+  margin-left: 10px;
+}
+
+.comment-div {
+  width: 120px;
+}
+
+.comment-div:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.likes {
+   font-family: 'RocknRoll One',
+   sans-serif;
+}

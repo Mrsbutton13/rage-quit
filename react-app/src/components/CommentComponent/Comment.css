@@ -1,0 +1,31 @@
+.comment-container {
+  width: 600px;
+  height: max-content;
+  box-shadow: 0 8px 8px 2px rgb(0 0 0 / 20%);
+  background-color: #b38cfb;
+  padding: 20px;
+  margin: auto;
+  margin-bottom: 80px;
+}
+
+.username {
+  margin-left: 10px;
+}
+
+.user-ava {
+  border-radius: 50%;
+  width: 65px;
+}
+
+.comment {
+  margin-left: 20%;
+  font-family: 'RocknRoll One',
+  sans-serif;
+}
+
+
+.likes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

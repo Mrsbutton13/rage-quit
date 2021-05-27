@@ -10,4 +10,3 @@ class Config:
   S3_SECRET= os.environ.get('S3_SECRET')
   S3_LOCATION = 'https://{}.s3.amazonaws.com/'.format(S3_BUCKET)
   SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
-  API_KEY= os.environ.get('API_KEY')

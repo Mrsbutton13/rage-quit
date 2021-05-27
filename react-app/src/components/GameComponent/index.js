@@ -3,19 +3,16 @@ import { NavLink } from 'react-router-dom'
 import './game.css'
 
 
-function Game({ game }) {
+function Game({ game, category }) {
   return (
     <>
       <div className='game-div'>
         <NavLink to={`/games/${game?.id}`}>
-          <img className='game-img' src={game?.background_image} alt='game' />
+          <img className='game-img' src={game?.img} alt='game' />
         </NavLink>
         <div className = 'game-info'>
-          <div className = 'rating'>Rating {game?.rating}</div>
-            <NavLink className='title' to={`/games/${game?.id}`}>{game?.name}</NavLink>
-          {game?.genres.map(genre => (
-            <NavLink className='category' to={`/genres/${genre?.id}`}>{genre?.name}</NavLink>
-          ))}
+          <NavLink className='title' to={`/games/${game?.id}`}>{game?.title}</NavLink>
+          <NavLink className='category' to={`/category/${category?.id}`}>{category?.name}</NavLink>
         </div>
       </div>
     </>

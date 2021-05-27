@@ -1,0 +1,64 @@
+.gameP-info{
+  width: 600px;
+  height: 650px;
+  background-color: #b38cfb;
+  box-shadow: 0 8px 8px 2px rgb(0 0 0 / 20%);
+  top: 90px;
+  left: 49%;
+  text-align: center;
+  margin: auto;
+  position: absolute;
+}
+
+.title-div{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  flex-wrap: wrap;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.game-title{
+  font-size: 50px;
+  font-family: 'RocknRoll One',
+  sans-serif;
+  color: #278caa;
+  text-shadow: 2px 3px #56503c;
+}
+
+
+.game-pic{
+  width: 20%;
+  height: 500px;
+  margin: auto;
+  margin-top: 45px;
+  z-index: 1;
+  box-shadow: 0 8px 8px 2px rgb(0 0 0 / 20%);
+  margin-bottom: 10%;
+  margin-left: 30%;
+}
+
+.game-form{
+  position: inherit;
+  margin: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.game-page {
+ display: flex;
+ flex-direction: column;
+ position: relative;
+}
+
+.gameO-info{
+  height: inherit;
+  color: black;
+  text-align: center;
+  font-size: 15px;
+  font-family: 'RocknRoll One',
+  sans-serif;
+  padding: 30px;
+}

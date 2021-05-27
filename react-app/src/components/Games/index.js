@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getGames, getTopGames } from '../../store/games'
+import { getGames } from '../../store/games'
 import Carousel from 'react-bootstrap/Carousel'
 import { getGenres } from '../../store/genres'
-import { NavLink } from 'react-router-dom'
 import Game from '../GameComponent'
 import GTA5 from '../../images/GTA5.png'
 import Ark from '../../images/Ark.png'
@@ -71,13 +70,15 @@ export const CategorizedGames = () => {
 
   return (
     <>
+    <div className='popular'>
       {games.map(game => (
-          <>
+        <>
         <div  key={game.id} className='game-container'>
           <Game key={game.id} game={game}/>
         </div>
         </>
     ))}
+    </div>
     </>
   )
 }
