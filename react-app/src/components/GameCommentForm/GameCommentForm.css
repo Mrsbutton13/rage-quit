@@ -1,0 +1,21 @@
+.game-comment-input {
+  width: 17rem;
+  height: 2rem;
+  background: #f2f1f9;
+  border: none;
+  padding: 4px;
+  border-radius: 4px;
+  align-self: center;
+}
+
+.submit-comment {
+  margin-left: 5px;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: white;
+  height: 2rem;
+  font-size: 20px;
+  width: 210px;
+  align-self: center;
+  margin-top: 10px;
+}

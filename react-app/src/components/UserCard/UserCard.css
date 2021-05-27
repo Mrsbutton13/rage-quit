@@ -1,0 +1,27 @@
+.user-div{
+  background-color:#b38cfb;
+  box-shadow: 0 4px 4px 4px rgb(0 0 0 / 30%);
+  margin: 20px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.user-img{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.image-div {
+  width: 300px;
+  height: 265px;
+  padding-left: 50px;
+  padding-top: 30px;
+
+}
+
+.user-info{
+  text-align: center;
+}

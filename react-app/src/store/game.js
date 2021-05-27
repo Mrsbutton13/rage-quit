@@ -2,11 +2,10 @@ const SET_GAME = 'game/setGame'
 
 const setGame = (game) => ({
   type: SET_GAME,
-  game
+  game,
 })
 
-
-export const getGames = () => async(dispatch) => {
+export const getGames = () => async (dispatch) => {
   const res = await fetch('/api/games')
   const data = await res.json()
   dispatch(setGame(data.game))
@@ -14,7 +13,7 @@ export const getGames = () => async(dispatch) => {
 }
 
 
-function reducer(state ={}, action) {
+function reducer(state = {}, action) {
   let newState;
   switch (action.type) {
     case SET_GAME:

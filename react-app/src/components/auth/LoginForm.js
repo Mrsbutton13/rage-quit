@@ -1,63 +1,74 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { login } from "../../services/auth";
+import { login, setCurrentUser } from "../../store/currentUser";
+import './Login.css'
+import background from '../../images/background.png'
+import Footer from "../Footer";
 
-const LoginForm = ({ authenticated, setAuthenticated }) => {
+const LoginForm = () => {
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.currentUser.user)
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  
   const onLogin = async (e) => {
     e.preventDefault();
-    const user = await login(email, password);
-    if (!user.errors) {
-      setAuthenticated(true);
-    } else {
-      setErrors(user.errors);
-    }
+    await dispatch(login({email, password}));
+    await dispatch((setCurrentUser()))
   };
-
+  
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
-
+  
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
-
-  if (authenticated) {
-    return <Redirect to="/" />;
+  
+  if(user) {
+    return <Redirect to='/'/>
   }
-
+  
+  
   return (
-    <form onSubmit={onLogin}>
+    <div className='login-page'>
+      <img className='login-img' src={background} />
+      <form className='login-form' onSubmit={onLogin}>
+      <div className='account'>Login</div>
       <div>
-        {errors.map((error) => (
-          <div>{error}</div>
+      {errors.map((error) => (
+        <div>{error}</div>
         ))}
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
+        </div>
+        <div className='email-div'>
+        <label className='email' htmlFor="email">Email</label>
         <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
+        className='email-input'
+        name="email"
+        type="text"
+        placeholder="Email"
+        value={email}
+        onChange={updateEmail}
         />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
+        </div>
+        <div className='password-div'>
+        <label className='password' htmlFor="password">Password</label>
         <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
+        className='password-input'
+        name="password"
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={updatePassword}
         />
-        <button type="submit">Login</button>
-      </div>
-    </form>
+        </div>
+        <button className='submit' type="submit">
+          Login</button>
+        </form>
+        </div>
   );
 };
 

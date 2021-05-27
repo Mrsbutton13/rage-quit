@@ -1,0 +1,11 @@
+.friend-button,
+.delete-button {
+  text-decoration: none;
+}
+
+.friend-button:hover,
+.delete-button:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+

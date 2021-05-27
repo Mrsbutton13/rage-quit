@@ -3,6 +3,7 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.awsUpload import *
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -62,10 +63,27 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
+        profile_image = None
+        if 'avatar' not in request.files:
+            upload = 'https://myragequit.s3-us-west-1.amazonaws.com/troll.png'
+        else:
+            profile_image = request.files['avatar']
+
+        if profile_image and allowed_file(profile_image.filename):
+            profile_image.filename = get_unique_filename(profile_image.filename)
+            upload = upload_file_to_s3(profile_image)
+            if upload['url']:
+                upload = upload['url']
+
+
         user = User(
             username=form.data['username'],
             email=form.data['email'],
+            avatar=upload,
+            bio=form.data['bio'],
+            gamertag=form.data['gamertag'],
             password=form.data['password']
         )
         db.session.add(user)
