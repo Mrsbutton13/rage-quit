@@ -24,6 +24,7 @@ function User() {
   const games = useSelector((state) => Object.values(state.game))
   const userGames = useSelector((state) => Object.values(state.userGame))
   const currentUser = useSelector(state => state.currentUser.user)
+  console.log(friends)
 
   const { userId }  = useParams();
   const currentUserId = currentUser.id

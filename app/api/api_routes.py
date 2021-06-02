@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from app.models.db import db 
 from flask_login import current_user, login_required
 from datetime import datetime
-from sqlalchemy import desc
+from sqlalchemy import desc, or_
 
 from app.models import Game, Category, Post, PostComment, User, Friend, GameComment, Platform, UserGame
 from app.forms import post_form, game_form, friend_form, add_form
@@ -14,7 +14,6 @@ api_routes = Blueprint('/api', __name__)
 def api_games_all():
   games = Game.query.all()
   return {'game': [game.to_dict() for game in games]}
-
 
   
 
@@ -56,10 +55,6 @@ def api_delete_post(postId):
   return 'successful'
 
 
-@api_routes.route('/comments')
-def api_get_comments():
-  comments = GameComment.query.all()
-  return {'comment': [comment.to_dict() for comment in comments]}
 
 
 @api_routes.route('/comments', methods=['POST'])
@@ -116,6 +111,10 @@ def api_delete_postComment(postCommentId):
     return 'unsuccessful'
   return 'successful'
 
+# @api_routes.route('/comments')
+# def api_get_comments():
+#   comments = db.session.query(GameComment).filter(())
+#   return {'comment': [comment.to_dict() for comment in comments]}
 
 # @api_routes.route('/friends')
 # def api_get_friend():
@@ -124,8 +123,11 @@ def api_delete_postComment(postCommentId):
 
 
 @api_routes.route('/friends')
+@login_required
 def api_get_friend():
-  friends = db.session.query(Friend).filter((Friend.user_id == current_user.id) | (Friend.friend_id == current_user.id))
+  print('this is a sentence')
+  friends = db.session.query(Friend).filter(or_(Friend.user_id == current_user.id, Friend.friend_id == current_user.id))
+  # friends = Friend.query.filter(or_(Friend.user_id == current_user.id, Friend.friend_id == current_user.id)).all()
   return {'friend' : [friend.to_dict() for friend in friends]}
 
 

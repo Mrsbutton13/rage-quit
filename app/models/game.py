@@ -21,6 +21,6 @@ class Game(db.Model):
       'title': self.title,
       'description' : self.description,
       'img': self.img,
-      'gameComments': [gameComment.id for gameComment in self.gameComments],
+      'gameComments': [gameComment.to_dict() for gameComment in self.gameComments],
     }
 
