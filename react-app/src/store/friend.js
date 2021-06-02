@@ -46,6 +46,7 @@ export const addAFriend = (friend) => async(dispatch) => {
 export const getFriend = () => async(dispatch) => {
   const res = await fetch(`/api/friends`)
   const data = await res.json()
+  console.log('does this work', data)
   dispatch(setFriend(data.friend))
 }
 

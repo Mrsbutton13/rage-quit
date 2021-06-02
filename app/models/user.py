@@ -49,5 +49,6 @@ class User(db.Model, UserMixin):
       'gamertag': self.gamertag,
       'gameComments': [comment.to_dict() for comment in self.gameComments],
       'posts': [post.to_dict() for post in self.posts],
-      'postComments': [postComment.to_dict() for postComment in self.postComments]
+      'postComments': [postComment.to_dict() for postComment in self.postComments],
+      'friend': [pal.to_dict() for pal in self.friend]
     }
