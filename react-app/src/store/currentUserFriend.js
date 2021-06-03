@@ -2,13 +2,12 @@ const ADD_FRIEND = 'friend/addFriend'
 const SET_FRIEND = 'friend/setFriend'
 const REMOVE_FRIEND = 'friend/removeFriend'
 
-
 const addFriend = (friend) => ({
   type: ADD_FRIEND,
   friend
 })
 
-const setFriend = (friend) => ({
+const setCurrentFriend = (friend) => ({
   type: SET_FRIEND,
   friend
 })
@@ -47,8 +46,10 @@ export const getFriend = () => async(dispatch) => {
   const res = await fetch(`/api/friends`)
   const data = await res.json()
   console.log('does this work', data)
-  dispatch(setFriend(data.friend))
+  dispatch(setCurrentFriend(data.friend))
 }
+
+
 
 function reducer(state = {}, action) {
   let newState;
@@ -64,7 +65,8 @@ function reducer(state = {}, action) {
       })
       return newState
     case REMOVE_FRIEND:
-      return {...state, friend: null}
+      return {...state,
+         friends: state.friends.filter(friend => friend !== action.friend)}
     default:
       return state
   }

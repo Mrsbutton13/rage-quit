@@ -111,10 +111,10 @@ def api_delete_postComment(postCommentId):
     return 'unsuccessful'
   return 'successful'
 
-# @api_routes.route('/comments')
-# def api_get_comments():
-#   comments = db.session.query(GameComment).filter(())
-#   return {'comment': [comment.to_dict() for comment in comments]}
+@api_routes.route('/comments')
+def api_get_comments():
+  comments = GameComment.query.all()
+  return {'comment': [comment.to_dict() for comment in comments]}
 
 # @api_routes.route('/friends')
 # def api_get_friend():
@@ -130,6 +130,12 @@ def api_get_friend():
   # friends = Friend.query.filter(or_(Friend.user_id == current_user.id, Friend.friend_id == current_user.id)).all()
   return {'friend' : [friend.to_dict() for friend in friends]}
 
+
+@api_routes.route('/friends/<int:userId>')
+def api_get_usrfriend(userId):
+  usersFriends = db.session.query(Friend).filter(or_(Friend.user_id == userId, Friend.friend_id == userId))
+  return {'userFriend' : [userFriend.to_dict() for userFriend in usersFriends]}
+  
 
 
 @api_routes.route('/friends', methods=['POST'])

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { addAFriend, getFriend } from '../../store/friend'
+import { addAFriend, getFriend } from '../../store/currentUserFriend'
 import './FriendButton.css'
 
 function FriendButton () {
