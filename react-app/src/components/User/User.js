@@ -14,14 +14,12 @@ import UserGame from "../UserGameComponent";
 import { setCurrentUser } from "../../store/currentUser";
 import Footer from "../Footer";
 import { getUserFriend } from "../../store/userFriend";
-import { getUserPost} from '../../store/usersPosts'
 
 function User() {
   const dispatch = useDispatch()
   const [user, setUser] = useState({});
   const [loaded, setLoaded ] = useState(false)
   const userFriends = useSelector((state) => Object.values(state.friend))
-  const posts = useSelector((state) => Object.values(state.userPost))
   const users = useSelector((state) => Object.values(state.users))
   const games = useSelector((state) => Object.values(state.game))
   const userGames = useSelector((state) => Object.values(state.userGame))
@@ -54,7 +52,7 @@ function User() {
 
 
   useEffect( async () => {
-    await dispatch(getUserPost(userId))
+    await dispatch(getPost())
     await dispatch(getFriend())
     await dispatch(getUser())
     await dispatch(getGames())
@@ -124,14 +122,17 @@ function User() {
               ))}
               </>
             ))}
+            {/* {users.filter(u => (u?.id === currentUserId && userFriend.user_id === userId) 
+              || (u?.id === userId && userFriend.friend_id === currentUserId)).map(u => ( */}
+              {/* ))} */}
           </div>
         </div>
         <div className='postU'>
-          {posts?.map((post) => (
+          {/* {posts?.map((post) => (
             (userId == post?.user_id ? (
               <Post post={post} user={user}/>
               ): null)
-              ))}
+              ))} */}
         </div>
         <div className='userU-games'>
           <div className='yourU-games'>

@@ -4,10 +4,17 @@ from flask_login import current_user, login_required
 from datetime import datetime
 from sqlalchemy import desc, or_
 
-from app.models import Game, Category, Post, PostComment, User, GameComment, Platform, UserGame
+from app.models import Game, Category, Post, PostComment, User, Friend, GameComment, Platform, UserGame
 from app.forms import post_form, game_form, friend_form, add_form
 
 api_routes = Blueprint('/api', __name__)
+
+
+@api_routes.route("/games")
+def api_games_all():
+  games = Game.query.all()
+  return {'game': [game.to_dict() for game in games]}
+
   
 
 @api_routes.route("/categories")
@@ -21,10 +28,6 @@ def api_posts_all():
   posts = Post.query.all()
   return {'post': [post.to_dict() for post in posts]}
 
-@api_routes.route('/posts/<int:userId>')
-def api_posts_users(userId):
-  userPosts = db.session.query(Post).filter(or_(Post.user_id == userId))
-  return {"userPosts": [userPost.to_dict() for userPost in userPosts]}
 
 
 @api_routes.route("/posts", methods=['POST'])
@@ -112,6 +115,54 @@ def api_delete_postComment(postCommentId):
 def api_get_comments():
   comments = GameComment.query.all()
   return {'comment': [comment.to_dict() for comment in comments]}
+
+# @api_routes.route('/friends')
+# def api_get_friend():
+#   friends = Friend.query.all()
+#   return {'friend' : [friend.to_dict() for friend in friends]}
+
+
+@api_routes.route('/friends')
+@login_required
+def api_get_friend():
+  print('this is a sentence')
+  friends = db.session.query(Friend).filter(or_(Friend.user_id == current_user.id, Friend.friend_id == current_user.id))
+  # friends = Friend.query.filter(or_(Friend.user_id == current_user.id, Friend.friend_id == current_user.id)).all()
+  return {'friend' : [friend.to_dict() for friend in friends]}
+
+
+@api_routes.route('/friends/<int:userId>')
+def api_get_usrfriend(userId):
+  usersFriends = db.session.query(Friend).filter(or_(Friend.user_id == userId, Friend.friend_id == userId))
+  return {'userFriend' : [userFriend.to_dict() for userFriend in usersFriends]}
+  
+
+
+@api_routes.route('/friends', methods=['POST'])
+@login_required
+def api_add_friend():
+  data = request.get_json()
+  now = datetime.utcnow()
+  friend = Friend(user_id=current_user.id, 
+                  friend_id=data['userId'], 
+                  timeSent=now, 
+                  status=data['status'])
+  db.session.add(friend)
+  db.session.commit()
+  return friend.to_dict()
+
+
+@api_routes.route('/friends/<int:friendId>', methods=['DELETE'])
+@login_required
+def api_delete_friend(friendId):
+  try:
+    friend = db.session.query(Friend).get(friendId)
+    db.session.delete(friend)
+    db.session.commit()
+  except:
+    return 'unsuccessful'
+  return 'successful'
+  
 
 
 @api_routes.route('/platforms')
