@@ -18,67 +18,42 @@ import { getUserFriend } from "../../store/userFriend";
 function User() {
   const dispatch = useDispatch()
   const [user, setUser] = useState({});
-  const [usersFriends, setUsersFriends] = useState()
   const [loaded, setLoaded ] = useState(false)
-  const posts = useSelector((state) => Object.values(state.post))
+  const userFriends = useSelector((state) => Object.values(state.friend))
   const users = useSelector((state) => Object.values(state.users))
   const games = useSelector((state) => Object.values(state.game))
   const userGames = useSelector((state) => Object.values(state.userGame))
   const currentUser = useSelector(state => state.currentUser.user)
   const friends = useSelector((state) => Object.values(state.userFriend))
-  console.log(friends)
   
   const { userId }  = useParams();
   const currentUserId = currentUser.id
 
   let friendId
-  {friends.map(friend => {
-    if( friend.user_id == userId) {
-      friendId = friend.user_id
-    }
-    else {
-      friendId = friend.friend_id
-    }
+  {userFriends.map(userFriend => {
+    if((currentUserId == userFriend?.user_id && userId == userFriend?.friend_id) || 
+      (currentUserId == userFriend?.friend_id && userId == userFriend?.user_id)) {
+        friendId = userFriend?.id
+      }
   })}
 
-  console.log(friendId)
-  let userFriend
-  let friendInfo 
-  {users.map(user => {
-    if((user.id == userFriend?.user_id && userId == userFriend?.friend_id) || 
-    (user.id == userFriend?.friend_id && userId == userFriend?.user_id)) {
-      friendInfo = 
+  let newFriend
+  if(!friendId){
+    newFriend = 
       <>
-    <div className='friendU'>
-      <span>
-        <hr/>
-      </span>
-      <NavLink className='friendU-div' to={`/users/${user?.id}`}>
-        <img className='friendU-img' src={user?.avatar}/>
-      </NavLink>
-      <NavLink className='friendU-name' to={`/users/${user?.id}`}>
-        {user?.username}
-      </NavLink>
-      <span>
-        <hr/>
-      </span>
-    </div>
-    </>
+        <FriendButton />
+      </>
+    } else {
+      newFriend =
+      <a className='delete-button' onClick={() => deleteAFriend(friendId)}>
+      <i class="fas fa-user-minus"></i> 
+      Delete Friend</a>
+    }
 
-}
-  })}
-
-  // useEffect( async() => {
-  //   const res = await fetch(`/api/friends/${userId}`)
-  //   const friends = await res.json()
-  //   setUsersFriends(friends) 
-  // },[])
-
-  // console.log()
 
   useEffect( async () => {
     await dispatch(getPost())
-    // await dispatch(getFriend(userId))
+    await dispatch(getFriend())
     await dispatch(getUser())
     await dispatch(getGames())
     await dispatch(getUserGames())
@@ -101,30 +76,13 @@ function User() {
   if (!user) {
     return null;
   }
-
-  
-
-  let newFriend
-  if(!friendId){
-    newFriend = 
-      <>
-        <FriendButton />
-      </>
-    } else {
-      newFriend =
-      <a className='delete-button' onClick={() => deleteAFriend(friendId)}>
-      <i class="fas fa-user-minus"></i> 
-      Delete Friend</a>
-    }
-  
-  let FriendsList
     
   const deleteAFriend = async(friendId) => {
     await dispatch(deleteFriend(friendId))
     await dispatch(getFriend())
   }
-            
-            
+  
+  
   return (
     <>
     {loaded && (
@@ -141,32 +99,40 @@ function User() {
         <div className='friendsU-div'>
             <h3 className='friendU-title'>{user.username}'s friends</h3>
           <div className='friendsU-inner'>  
-           
+            {friends.map(friend => (
+              <>
+              {users.map(oneUser => (
+                ((oneUser?.id == friend?.user_id && userId == friend?.friend_id) || 
+                (oneUser?.id == friend?.friend_id && userId == friend?.user_id) ? (
+                  <div className='friendU'>
+                  <span>
+                    <hr/>
+                  </span>
+                  <NavLink className='friendU-div' to={`/users/${oneUser?.id}`}>
+                    <img className='friendU-img' src={oneUser?.avatar}/>
+                  </NavLink>
+                  <NavLink className='friendU-name' to={`/users/${oneUser?.id}`}>
+                    {oneUser?.username}
+                  </NavLink>
+                  <span>
+                    <hr/>
+                  </span>
+                </div> 
+                ): null)
+              ))}
+              </>
+            ))}
             {/* {users.filter(u => (u?.id === currentUserId && userFriend.user_id === userId) 
               || (u?.id === userId && userFriend.friend_id === currentUserId)).map(u => ( */}
-                {/* <div className='friendU'>
-                  <span>
-                    <hr/>
-                  </span>
-                  <NavLink className='friendU-div' to={`/users/${other?.id}`}>
-                    <img className='friendU-img' src={other?.avatar}/>
-                  </NavLink>
-                  <NavLink className='friendU-name' to={`/users/${other?.id}`}>
-                    {other?.username}
-                  </NavLink>
-                  <span>
-                    <hr/>
-                  </span>
-                </div> */}
               {/* ))} */}
           </div>
         </div>
         <div className='postU'>
-          {posts?.map((post) => (
+          {/* {posts?.map((post) => (
             (userId == post?.user_id ? (
               <Post post={post} user={user}/>
               ): null)
-              ))}
+              ))} */}
         </div>
         <div className='userU-games'>
           <div className='yourU-games'>
