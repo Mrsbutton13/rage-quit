@@ -63,10 +63,10 @@ const Footer = () => {
           <div className='find-us'>
             <span className='find'> Find Me </span>
             <Link className='linked-In' to='www.linkedin.com/in/laurabutton-13'>
-              <i class="fab fa-linkedin-in"></i>
+              <i className="fab fa-linkedin-in"></i>
             </Link>
             <Link className='github' to='https://mrsbutton13.github.io/'>
-              <i class="fab fa-github"></i>
+              <i className="fab fa-github"></i>
             </Link>
           </div>
           </div>

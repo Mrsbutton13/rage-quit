@@ -43,7 +43,7 @@ function PostForm() {
           placeholder='What cha thinking?' >
           </textarea>
           <button className='post-button' type='submit' value='submit'>
-            <i class="far fa-share-square"></i>
+            <i className="far fa-share-square"></i>
           </button>
       </form>
 

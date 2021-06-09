@@ -43,7 +43,7 @@ function GameForm () {
       placeholder='Leave a comment'>
       </input>
       <button className='submit-comment' type='submit' value='submit'>
-        <i class="far fa-share-square"></i> Submit Comment
+        <i className="far fa-share-square"></i> Submit Comment
       </button>
     </form>
     </>

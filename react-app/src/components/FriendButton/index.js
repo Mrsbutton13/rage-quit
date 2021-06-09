@@ -3,7 +3,9 @@ import moment from 'moment'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { addAFriend, getFriend } from '../../store/currentUserFriend'
+
 import './FriendButton.css'
+import { getUserFriend } from '../../store/userFriend'
 
 function FriendButton () {
   const dispatch = useDispatch()
@@ -28,6 +30,7 @@ function FriendButton () {
       status
     }
     await dispatch(addAFriend(friend));
+    await dispatch(getUserFriend(userId))
     await dispatch(getFriend())
   };
 
@@ -35,7 +38,7 @@ function FriendButton () {
   return (
     <>
     <a className='friend-button' onClick={addFriend} >
-      <i class="fas fa-user-plus"></i> 
+      <i className="fas fa-user-plus"></i> 
       Add Friend</a>
     </>
   )

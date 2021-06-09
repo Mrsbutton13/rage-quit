@@ -10,6 +10,7 @@ import friend from './currentUserFriend'
 import postComment from './postComment'
 import userGame from './userGame'
 import userFriend from './userFriend'
+import otherUser from './otherUser'
 
 const rootReducer = combineReducers({
   game,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   friend,
   postComment,
   userGame,
-  userFriend
+  userFriend,
+  otherUser
 })
 
 const logger = require('redux-logger').default

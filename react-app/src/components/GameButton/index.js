@@ -33,24 +33,24 @@ function GameButton () {
     add = 
      <>
    <a className='add-game' onClick={addAGame}>
-     <i class="fas fa-gamepad"></i> Add Game</a>
+     <i className="fas fa-gamepad"></i> Add Game</a>
      </>
  } else {
    games.map(game => {
      if(userId == game?.user_id && gameId == game?.game_id) {
        add =
-       <>
+       <div key={game.id}>
      <a className='delete-game' onClick={() => deleteAGame(game.id)}>
-     <i class="fas fa-gamepad"></i><div>Remove Game</div>
+     <i className="fas fa-gamepad"></i><div>Remove Game</div>
      </a>
-     </>
+       </div>
    }
    else {
      add = 
-     <>
+     <div key={game.id}>
    <a className='add-game' onClick={addAGame}>
-     <i class="fas fa-gamepad"></i> Add Game</a>
-     </>
+     <i className="fas fa-gamepad"></i> Add Game</a>
+     </div>
    }
   })
 }

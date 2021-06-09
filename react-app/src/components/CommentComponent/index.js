@@ -28,16 +28,16 @@ function GameComment({user, comment }){
       </span>
       <div className='likes'>
       <div>
-        <i class="far fa-thumbs-up"></i>
+        <i className="far fa-thumbs-up"></i>
         Like
       </div>
       <div>
-        <i class="far fa-comment"></i>
+        <i className="far fa-comment"></i>
         Reply
       </div>
       <div >
         <a onClick={() => deleteComment(comment?.id)}>
-        <i class="far fa-trash-alt"></i>
+        <i className="far fa-trash-alt"></i>
         Delete
         </a>
       </div>

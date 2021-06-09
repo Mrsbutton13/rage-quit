@@ -23,7 +23,7 @@ let userLinks
     <>
     <div className='likes'>
     <div>
-      <i class="far fa-thumbs-up"></i>
+      <i className="far fa-thumbs-up"></i>
       Like
     </div>
     <div className='comment-div'>
@@ -31,7 +31,7 @@ let userLinks
     </div>
       <div>
         <a onClick={() => deleteAPost(post?.id)} >
-      <i class="far fa-trash-alt"></i>
+      <i className="far fa-trash-alt"></i>
       Delete
         </a>
     </div>
@@ -42,7 +42,7 @@ let userLinks
     <>
     <div className='likes'>
     <div>
-      <i class="far fa-thumbs-up"></i>
+      <i className="far fa-thumbs-up"></i>
       Like
     </div>
     <div className='comment-div'>

@@ -20,12 +20,12 @@ const removeGComment = () => ({
 
 
 export const deleteGComment = (commentId) => async() => {
-  await fetch (`/api/comments/${commentId}`, {method: 'DELETE'})
+  await fetch (`/api/games/comments/${commentId}`, {method: 'DELETE'})
 }
 
 
 export const getGComment = () => async (dispatch) => {
-  const res = await fetch('/api/comments')
+  const res = await fetch('/api/games/comments')
   const data = await res.json()
   dispatch(setGComment(data.comment))
 }
@@ -33,7 +33,7 @@ export const getGComment = () => async (dispatch) => {
 
 export const createGComment = (comment) => async(dispatch) => {
   const { userId, gameId, body } = comment
-  const res = await fetch('/api/comments', {
+  const res = await fetch('/api/games/comments', {
     method: 'POST',
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
