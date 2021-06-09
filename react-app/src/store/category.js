@@ -8,7 +8,7 @@ const setCategory = (category) => ({
 
 
 export const getCategory = () => async (dispatch) => {
-  const res = await fetch('/api/categories')
+  const res = await fetch('/api/games/categories')
   const data = await res.json()
   dispatch(setCategory(data.category))
   return res

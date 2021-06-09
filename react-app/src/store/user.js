@@ -1,25 +1,17 @@
-const SET_USERS = 'users'
-
+const SET_USERS = 'getUser/users'
 
 const setUsers = (users) => ({
   type: SET_USERS,
   users
 })
 
-
 export const getUser = () => async (dispatch) => {
   const res = await fetch(`/api/users`)
   const data = await res.json()
+  console.log(data)
   dispatch(setUsers(data.users))
-  return res
+  // return data
 }
-
-export const getOneUser = () => async (userId) => {
-  const res = await fetch(`/api/users/${userId}`)
-  const data = await res.json()
-  return data
-}
-
 
 function reducer(state = {}, action) {
   let newState;
@@ -30,6 +22,7 @@ function reducer(state = {}, action) {
         newState[user.id] = user
       })
       return newState
+    
     default:
       return state
   }

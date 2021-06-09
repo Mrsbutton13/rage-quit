@@ -24,7 +24,7 @@ export const deleteFriend = (friendId) => async() => {
 
 export const addAFriend = (friend) => async(dispatch) => {
   const { user_id, userId, timeSent, status } = friend
-  const res = await fetch('/api/friends', {
+  const res = await fetch('/api/friends/', {
     method:'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -43,9 +43,8 @@ export const addAFriend = (friend) => async(dispatch) => {
 }
 
 export const getFriend = () => async(dispatch) => {
-  const res = await fetch(`/api/friends`)
+  const res = await fetch(`/api/friends/`)
   const data = await res.json()
-  console.log('does this work', data)
   dispatch(setCurrentFriend(data.friend))
 }
 

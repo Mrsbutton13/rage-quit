@@ -50,5 +50,7 @@ class User(db.Model, UserMixin):
       'gameComments': [comment.to_dict() for comment in self.gameComments],
       'posts': [post.to_dict() for post in self.posts],
       'postComments': [postComment.to_dict() for postComment in self.postComments],
-      'friend': [pal.to_dict() for pal in self.friend]
+      'friend': [pal.to_dict() for pal in self.friend],
+      'user': [otherPal.to_dict() for otherPal in self.user],
+      'userGames': [userGame.to_dict() for userGame in self.userGames]
     }

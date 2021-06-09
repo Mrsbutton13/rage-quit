@@ -11,7 +11,7 @@ function PostCommentModal({post}) {
   return (
     <>
       <a className='comment' onClick={() => setShowModal(true)}>
-       <i class="far fa-comment"></i>Comment 
+       <i className="far fa-comment"></i>Comment 
       </a>
       {showModal && (
         <Modal onClose={() => setShowModal(false)} >

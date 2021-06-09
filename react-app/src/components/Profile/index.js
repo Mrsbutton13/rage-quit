@@ -18,27 +18,18 @@ function Profile () {
   const dispatch = useDispatch()
   const [loaded, setLoaded ] = useState(false)
   const currentUser = useSelector((state) => state.currentUser.user)
-  const posts = useSelector((state) => Object.values(state.post))
   const users = useSelector((state) => Object.values(state.users))
   const friends = useSelector((state) => Object.values(state.friend))
   const games = useSelector((state) => Object.values(state.game))
-  const userGames = useSelector((state) => Object.values(state.userGame))
-  console.log(users)
+  console.log(currentUser)
 
   useEffect(async() => {
    await dispatch(setCurrentUser())
-   await dispatch(getPost())
   //  await dispatch(getUser())
    await dispatch(getFriend())
    await dispatch(getGames())
-   await dispatch(getUserGames())
    await setLoaded(true)
   }, [dispatch])
-
-  if(!currentUser) {
-  }
-
-  const sortedPosts = posts.sort((a,b) => a.created_on < b.created_on ? 1: -1)
   
   return (
     <>
@@ -82,11 +73,9 @@ function Profile () {
           <PostFormModal/>
         </div>
         <div className='post'>
-        {sortedPosts?.map((post) => (
-          <>
-            {users?.filter((user) =>(user?.id === post?.user_id)).map(user => (
-              <Post post={post} user={user}/>
-          ))}
+        {currentUser.posts?.map((post) => (
+          <>    
+              <Post post={post} user={currentUser}/>
           </>
         ))}
         </div>'
@@ -97,7 +86,7 @@ function Profile () {
             <hr/>
           </span>
             <div className='inner-games'>
-              {userGames.map(userGame => (
+              {currentUser.userGames.map(userGame => (
                 <>
                 {games.filter(game => game?.id === userGame?.game_id && currentUser?.id === userGame?.user_id).map(game => (
                   <UserGame game={game}/>

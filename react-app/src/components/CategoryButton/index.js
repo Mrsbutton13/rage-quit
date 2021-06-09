@@ -31,7 +31,7 @@ function CategoryButton() {
     <div className='menu'>
         <img src={logo} className='logo'/>
       <div className='dpad'>
-        <i class="fas fa-plus-circle"></i>
+        <i className="fas fa-plus-circle"></i>
       </div>
     </div>
     </button>

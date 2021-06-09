@@ -35,7 +35,7 @@ function PostComments({ post }) {
   return (
     <>
     <a className='comments' onClick={openMenu}>
-      <i class="fas fa-comment-dots"></i> Comments
+      <i className="fas fa-comment-dots"></i> Comments
     </a>
 
     {showComments && (
