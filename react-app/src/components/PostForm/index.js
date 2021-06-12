@@ -24,7 +24,6 @@ function PostForm() {
       createdOn
     }
     await dispatch(createPost(post))
-    console.log(createdOn)
     await dispatch(getPost())
     await setBody("")
     

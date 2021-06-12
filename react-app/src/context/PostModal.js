@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
-import {login} from '../images/login.png'
 import './Modal.css'
 
 const ModalContext = React.createContext()

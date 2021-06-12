@@ -1,6 +1,6 @@
 .post-container {
   width: 100%;
-  background-color: #b38cfb;
+  background-color: #424242;
   box-shadow: 0 -1px 5px 0px rgb(0 0 0 / 30%);
   padding: 20px;
   margin-bottom: 20px;
@@ -12,11 +12,13 @@
   font-family: 'RocknRoll One',
   sans-serif;
   overflow-wrap: break-word;
+  color: #b38cfb;
 }
 
 .post-user {
   border-radius: 50%;
-  width: 65px;
+  width: 70px;
+  height: 70px;
 }
 
 .post-username {
@@ -35,4 +37,5 @@
 .likes {
    font-family: 'RocknRoll One',
    sans-serif;
+   color: #b38cfb;
 }
