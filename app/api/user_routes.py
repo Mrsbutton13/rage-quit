@@ -17,3 +17,5 @@ def users():
 def user(id):
     otherUser = User.query.get(id)
     return otherUser.to_dict()
+
+

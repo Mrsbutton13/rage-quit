@@ -1,5 +1,4 @@
 .main-container {
- margin-top: 20px;
  display: flex;
  flex-direction: row;
  height: 100vh;
@@ -26,9 +25,13 @@
   font-size: 25px;
 }
 .links {
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: row;
+  background-color: #424242;
+  margin-left: 2px;
+  margin-right: 2px;
+
 }
 
 .link-icons {
@@ -72,48 +75,50 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 4px 4px rgb(0 0 0 / 30%);
-  border: 2px solid #b38cfb;
-  border-radius: 20px;
+  overflow-y: scroll;
 }
 
+.profile-container::-webkit-scrollbar{
+  display:none;
+}
 .user-info {
   display: flex;
   flex-direction: row;
   padding: 5%;
-  width: 90%;
+  width: 100%;
   align-items: center;
-  border-bottom: 1px solid #b38cfb
+  background-color: #424242;
+  height: 100px;
+}
+
+.user-span{
+  width: 100%;
+  background-color: #424242;
 }
 
 .add-post {
   background-color: #424242;
   height: 100px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom: 1px solid #b38cfb;
 }
 
 .posts {
   width: 50%;
-  border: 2px solid #b38cfb;
-  border-radius: 20px;
   height: 100%;
   max-height: 100%;
 }
+
 .post {
   overflow-y: scroll;
   height: fit-content;
-  max-height: 91%;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  max-height: 89%;
 }
 
 .post::-webkit-scrollbar {
   display: none;
 } 
 
-.user-title {
+.user-title,
+.friend-title {
   font-family: 'RocknRoll One',
   sans-serif;
   margin-top: 30px;
@@ -123,7 +128,11 @@
 
 .your-games {
   text-align: center;
-  width: 351px;
+  width: 100%;
+  background-color: #424242;
+  margin-left: 2px;
+  margin-right: 2px;
+  height: 67%;
 }
 
 .inner-games {
@@ -142,10 +151,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 4px 4px rgb(0 0 0 / 30%);
-  padding: 3%;
-  border: 2px solid #b38cfb;
-  border-radius: 20px;
+  color: #b38cfb;
+  overflow-y: scroll;
+}
+
+.friends-div::-webkit-scrollbar {
+  display: none;
 }
 
 .friends-inner {
@@ -156,10 +167,10 @@
 }
 
 .friend-img{
-width: 60px;
-height: 60px;
-border-radius: 50%;
-margin-right: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .friend-div{
@@ -169,4 +180,6 @@ margin-right: 10px;
 
 .friend{
   height: 85px;
+  margin-left: 20px;
+
 }

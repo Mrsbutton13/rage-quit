@@ -38,7 +38,7 @@ a:hover {
 }
 
 hr {
-  height: 1px;
-  background-color: #b38cfb;
-  border: none;
+  border: 1px solid #b38cfb;
+  width: 90%;
+  
 }
