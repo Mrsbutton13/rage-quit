@@ -1,10 +1,9 @@
 .post-container {
   width: 100%;
   background-color: #424242;
-  box-shadow: 0 -1px 5px 0px rgb(0 0 0 / 30%);
-  padding: 20px;
+  padding: 60px;
   margin-bottom: 20px;
-  margin-top: 10px;
+  margin-top: 2px;
 }
 
 .post-body {

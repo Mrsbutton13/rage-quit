@@ -31,30 +31,35 @@ function Profile () {
       <div className='main-container'>
         <div className='profile-container'>
           <div className='user-info'>
-          <img className='user-pic' src={currentUser?.avatar}/>
+            <img className='user-pic' src={currentUser?.avatar}/>
             <h1 className='welcome-user'>{currentUser?.username}</h1>
           </div>
-          <span>
+          <span className='user-span'>
             <hr/>
           </span>
           <div className='links'>
-          <div className='link-icons'>
-              <i class="fas fa-home"></i> 
-              <i className="fas fa-user-edit"></i> 
-              <i class="fas fa-user"></i> 
+            <div className='link-icons'>
+                <i class="fas fa-home"></i> 
+                <i className="fas fa-user-edit"></i> 
+                <i class="fas fa-user"></i> 
             </div>
             <div className='link-titles'>
-              <span className='home'>Home</span>
-              <span className='edit'>Edit profile</span>
-              <span className='public'>View public profile</span>
+              <NavLink className='home' to={'/'}>
+              <span>Home</span>
+              </NavLink>
+              <NavLink className='edit' to={'/'}>        
+              <span >Edit profile</span>
+              </NavLink>
+              <NavLink  className='public' to={`/users/${currentUser.id}`}>
+              <span>View public profile</span>
+              </NavLink>
+            </div>
           </div>
-          </div>
-          <div className='user-games'>
           <div className='your-games'>
             <h3 className='user-title'>Your Games</h3>
-          <span>
-            <hr/>
-          </span>
+            <span>
+              <hr/>
+            </span>
             <div className='inner-games'>
               {currentUser.userGames.map(userGame => (
                 <>
@@ -66,41 +71,40 @@ function Profile () {
             </div>
           </div>
         </div>
-        </div>
         <div className='posts' >
-        <div className='add-post'>
-          <PostFormModal />
-        </div>
-        <div className='post'>
-        {currentUser.posts?.map((post) => (
-          <>    
-              <Post post={post} user={currentUser}/>
-          </>
-        ))}
-        </div>
+          <div className='add-post'>
+            <PostFormModal />
+          </div>
+          <div className='post'>
+          {currentUser.posts?.map((post) => (
+            <>    
+                <Post post={post} user={currentUser}/>
+            </>
+          ))}
+          </div>
         </div>
         <div className='friends-div'>
           <h3 className='friend-title'>People you game with</h3>
+          <span className='user-span'>
+            <hr/>
+          </span>
           {friends.map((friend) => (
           <div className='friends-inner'>          
             <>
             {users?.filter(user => (user?.id === friend?.friend_id) && (currentUser?.id === friend?.user_id) || 
             (user?.id === friend?.user_id && currentUser?.id === friend?.friend_id)).map(user => (
                 <div key={user?.id} className='friend'>
-                  <span>
-                    <hr/>
-                  </span>
                   <NavLink className='friend-div' to={`/users/${user.id}`}>
                     <img className='friend-img' src={user?.avatar}/>
                   </NavLink>
                   <NavLink className='friend-name' to={`/users/${user.id}`}>
                     {user?.username}
                   </NavLink>
+                </div>
+            ))}
                   <span>
                     <hr/>
                   </span>
-                </div>
-            ))}
             </>
           </div>
             ))}
