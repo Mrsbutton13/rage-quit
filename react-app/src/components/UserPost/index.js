@@ -10,7 +10,7 @@ function PostFormModal() {
   return (
     <>
       <button className='create' onClick={() => setShowModal(true)}>
-        Create a post. 
+        Tell others what you're thinking about.
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)} >

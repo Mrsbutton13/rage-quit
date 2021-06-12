@@ -29,15 +29,19 @@
 
 .post-button,
 .create {
-   border: 1px solid black;
-   border-radius: 4px;
-   background-color: white;
-   height: 30px;
-   font-size: 20px;
-   padding-inline-start: 13px;
-   width: 240px;
-   padding-bottom: 5px;
-   align-self: center;
-   color: black;
-   margin-left: 30%;
+border: 2px solid #b38cfb;
+border-radius: 4px;
+background-color: #b38cfb;
+height: 45px;
+font-size: 23px;
+padding-inline-start: 13px;
+width: 86%;
+padding-bottom: 5px;
+align-self: center;
+color: #424242;
+}
+
+.create{
+  margin-top: 3%;
+  margin-left: 7%;
 }

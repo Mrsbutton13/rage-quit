@@ -4,28 +4,21 @@ import { NavLink } from 'react-router-dom'
 import { setCurrentUser } from '../../store/currentUser'
 import { getFriend } from '../../store/currentUserFriend'
 import { getGames } from '../../store/game'
-import { getPost } from '../../store/post'
-import { getUser } from '../../store/user'
-import { getUserGames } from '../../store/userGame'
-import Footer from '../Footer'
 import Post from '../PostComponent'
 import UserGame from '../UserGameComponent'
 import PostFormModal from '../UserPost'
 import './Profile.css'
 
-
 function Profile () {
   const dispatch = useDispatch()
-  const [loaded, setLoaded ] = useState(false)
+  const [ loaded, setLoaded ] = useState(false)
   const currentUser = useSelector((state) => state.currentUser.user)
   const users = useSelector((state) => Object.values(state.users))
   const friends = useSelector((state) => Object.values(state.friend))
   const games = useSelector((state) => Object.values(state.game))
-  console.log(currentUser)
-
+  
   useEffect(async() => {
    await dispatch(setCurrentUser())
-  //  await dispatch(getUser())
    await dispatch(getFriend())
    await dispatch(getGames())
    await setLoaded(true)
@@ -37,11 +30,54 @@ function Profile () {
       <>
       <div className='main-container'>
         <div className='profile-container'>
-          <img className='user-pic' src={currentUser?.avatar}/>
           <div className='user-info'>
-            <h1 className='welcome-user'>Welcome {currentUser?.username}</h1>
-            <h2 className='gamertag'>Your Gamertag: {currentUser?.gamertag}</h2>
+          <img className='user-pic' src={currentUser?.avatar}/>
+            <h1 className='welcome-user'>{currentUser?.username}</h1>
           </div>
+          <span>
+            <hr/>
+          </span>
+          <div className='links'>
+          <div className='link-icons'>
+              <i class="fas fa-home"></i> 
+              <i className="fas fa-user-edit"></i> 
+              <i class="fas fa-user"></i> 
+            </div>
+            <div className='link-titles'>
+              <span className='home'>Home</span>
+              <span className='edit'>Edit profile</span>
+              <span className='public'>View public profile</span>
+          </div>
+          </div>
+          <div className='user-games'>
+          <div className='your-games'>
+            <h3 className='user-title'>Your Games</h3>
+          <span>
+            <hr/>
+          </span>
+            <div className='inner-games'>
+              {currentUser.userGames.map(userGame => (
+                <>
+                {games.filter(game => game?.id === userGame?.game_id && currentUser?.id === userGame?.user_id).map(game => (
+                  <UserGame game={game}/>
+                ))}
+                </>
+              ))}
+            </div>
+          </div>
+        </div>
+        </div>
+        <div className='posts' >
+        <div className='add-post'>
+          <PostFormModal />
+        </div>
+        <div className='post'>
+        {currentUser.posts?.map((post) => (
+          <>    
+              <Post post={post} user={currentUser}/>
+          </>
+        ))}
+        </div>
         </div>
         <div className='friends-div'>
           <h3 className='friend-title'>People you game with</h3>
@@ -69,40 +105,13 @@ function Profile () {
           </div>
             ))}
         </div>
-        <div className='add-post'>
-          <PostFormModal/>
-        </div>
-        <div className='post'>
-        {currentUser.posts?.map((post) => (
-          <>    
-              <Post post={post} user={currentUser}/>
-          </>
-        ))}
-        </div>'
-        <div className='user-games'>
-          <div className='your-games'>
-            <h3 className='user-title'>Your Games</h3>
-          <span>
-            <hr/>
-          </span>
-            <div className='inner-games'>
-              {currentUser.userGames.map(userGame => (
-                <>
-                {games.filter(game => game?.id === userGame?.game_id && currentUser?.id === userGame?.user_id).map(game => (
-                  <UserGame game={game}/>
-                ))}
-                </>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
       </>
     )}
-    <Footer/>
     </>
   )
 }
+
 
 
 

@@ -9,11 +9,11 @@ body {
 }
 
 body {
-  background-color: rgb(179, 140, 251, 45%);
+  background-color: #000000;
 }
 
 nav {
-  background-color: #b38cfb;
+  background-color: #424242;
   width: 100vw;
   display: flex;
   height: 100px;
@@ -25,7 +25,7 @@ nav {
 
 a {
   text-decoration: none;
-  color: black;
+  color: #b38cfb;
   font-family: 'RocknRoll One',
   sans-serif;
 }
@@ -35,4 +35,10 @@ a:hover {
   text-decoration: none;
   cursor: pointer;
   
+}
+
+hr {
+  height: 1px;
+  background-color: #b38cfb;
+  border: none;
 }
