@@ -10,7 +10,7 @@ export const getUser = () => async (dispatch) => {
   const data = await res.json()
   console.log(data)
   dispatch(setUsers(data.users))
-  // return data
+  return data
 }
 
 function reducer(state = {}, action) {
@@ -22,7 +22,6 @@ function reducer(state = {}, action) {
         newState[user.id] = user
       })
       return newState
-    
     default:
       return state
   }

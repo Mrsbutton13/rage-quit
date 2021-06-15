@@ -7,7 +7,7 @@ import FriendButton from "../FriendButton";
 import { NavLink, Link } from 'react-router-dom'
 import Post from '../PostComponent'
 import { getUser } from "../../store/user";
-import { getUserGames } from '../../store/userGame'
+import { getUserGames } from '../../store/currentUserGame'
 import { getGames } from '../../store/game'
 import {getOneUser} from '../../store/otherUser'
 import './User.css'

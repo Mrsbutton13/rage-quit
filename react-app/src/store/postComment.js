@@ -19,11 +19,11 @@ const removePComment = () => ({
 
 
 export const deletePComment = (postCommentId) => async() => {
-  await fetch (`/api/postComment/${postCommentId}`, {method: 'DELETE'})
+  await fetch (`/api/posts/postComment/${postCommentId}`, {method: 'DELETE'})
 }
 
 export const getPComment = () => async (dispatch) => {
-  const res = await fetch('/api/postComment')
+  const res = await fetch('/api/posts/postComment')
   const data = await res.json()
   dispatch(setPComment(data.postComment))
 }
@@ -31,7 +31,7 @@ export const getPComment = () => async (dispatch) => {
 
 export const createPComment = (postComment) => async(dispatch) => {
   const { userId, postId, body } = postComment
-  const res = await fetch('/api/postComment', {
+  const res = await fetch('/api/posts/postComment', {
     method: 'POST',
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from app.models.db import db 
 from flask_login import current_user, login_required
 from datetime import datetime
-from sqlalchemy import desc, or_
+from sqlalchemy import desc, or_, and_
 
 from app.models import User, Friend
 from app.forms import friend_form
@@ -13,13 +13,15 @@ friends_routes = Blueprint('/friends', __name__)
 @login_required
 def friends_get_currentUserFriend():
   friends = db.session.query(Friend).filter(or_(Friend.user_id == current_user.id, Friend.friend_id == current_user.id))
-  return {'friend' : [friend.to_dict() for friend in friends]}
+  users = db.session.query(User).filter(and_(or_(Friend.user_id == User.id, Friend.friend_id == User.id),or_(current_user.id == Friend.friend_id, current_user.id == Friend.user_id)))
+  return {'friend' : [friend.to_dict() for friend in users]}
 
 
 @friends_routes.route('/<int:userId>')
 def friends_get_usrfriend(userId):
   usersFriends = db.session.query(Friend).filter(or_(Friend.user_id == userId, Friend.friend_id == userId))
-  return {'userFriend' : [userFriend.to_dict() for userFriend in usersFriends]}
+  users = db.session.query(User).filter(and_(or_(Friend.user_id == User.id, Friend.friend_id == User.id),or_(userId == Friend.friend_id, userId == Friend.user_id)))
+  return {'userFriend' : [userFriend.to_dict() for userFriend in users]}
   
 
 

@@ -14,7 +14,6 @@ function Category() {
 
   const categories = useSelector((state) => Object.values(state.category))
   const games = useSelector((state) => Object.values(state.game))
-  console.log(games)
 
   let {id} = useParams()
   

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { addGame, deleteGame, getUserGames } from '../../store/userGame'
+import { addGame, deleteGame, getUserGames } from '../../store/currentUserGame'
 
 function GameButton () {
   const dispatch = useDispatch()

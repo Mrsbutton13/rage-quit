@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom'
 import { setCurrentUser } from '../../store/currentUser'
 import { getFriend } from '../../store/currentUserFriend'
 import { getGames } from '../../store/game'
+import { getPost } from '../../store/post'
+import { getUserGames } from '../../store/currentUserGame'
 import Post from '../PostComponent'
 import UserGame from '../UserGameComponent'
 import PostFormModal from '../UserPost'
@@ -13,14 +15,30 @@ function Profile () {
   const dispatch = useDispatch()
   const [ loaded, setLoaded ] = useState(false)
   const currentUser = useSelector((state) => state.currentUser.user)
-  const users = useSelector((state) => Object.values(state.users))
   const friends = useSelector((state) => Object.values(state.friend))
+  const userGames = useSelector((state) => Object.values(state.userGame))
   const games = useSelector((state) => Object.values(state.game))
+  const allPosts = useSelector((state) => Object.values(state.post))
+  console.log(userGames)
+  // let posts 
+  // {currentUser.posts?.map((post) => (
+  //   <>    
+  //     <Post post={post} user={currentUser}/>
+  //   </>
+  // ))}
+
+  {allPosts.map(post => {
+
+  })}
   
+  
+
   useEffect(async() => {
    await dispatch(setCurrentUser())
+   await dispatch(getUserGames())
    await dispatch(getFriend())
    await dispatch(getGames())
+   await dispatch(getPost())
    await setLoaded(true)
   }, [dispatch])
   
@@ -39,16 +57,16 @@ function Profile () {
           </span>
           <div className='links'>
             <div className='link-icons'>
-                <i class="fas fa-home"></i> 
-                <i className="fas fa-user-edit"></i> 
-                <i class="fas fa-user"></i> 
+              <NavLink className='home' to={'/'}>
+                <i className="fas fa-home"></i> 
+              </NavLink>
+              <NavLink  className='public' to={`/users/${currentUser.id}`}>
+                <i className="fas fa-user"></i> 
+              </NavLink>
             </div>
             <div className='link-titles'>
               <NavLink className='home' to={'/'}>
               <span>Home</span>
-              </NavLink>
-              <NavLink className='edit' to={'/'}>        
-              <span >Edit profile</span>
               </NavLink>
               <NavLink  className='public' to={`/users/${currentUser.id}`}>
               <span>View public profile</span>
@@ -61,12 +79,8 @@ function Profile () {
               <hr/>
             </span>
             <div className='inner-games'>
-              {currentUser.userGames.map(userGame => (
-                <>
-                {games.filter(game => game?.id === userGame?.game_id && currentUser?.id === userGame?.user_id).map(game => (
-                  <UserGame game={game}/>
-                ))}
-                </>
+              {userGames.map(game => (
+                  <UserGame key={game.id} game={game}/>
               ))}
             </div>
           </div>
@@ -76,11 +90,7 @@ function Profile () {
             <PostFormModal />
           </div>
           <div className='post'>
-          {currentUser.posts?.map((post) => (
-            <>    
-                <Post post={post} user={currentUser}/>
-            </>
-          ))}
+          
           </div>
         </div>
         <div className='friends-div'>
@@ -89,24 +99,23 @@ function Profile () {
             <hr/>
           </span>
           {friends.map((friend) => (
-          <div className='friends-inner'>          
-            <>
-            {users?.filter(user => (user?.id === friend?.friend_id) && (currentUser?.id === friend?.user_id) || 
-            (user?.id === friend?.user_id && currentUser?.id === friend?.friend_id)).map(user => (
-                <div key={user?.id} className='friend'>
-                  <NavLink className='friend-div' to={`/users/${user.id}`}>
-                    <img className='friend-img' src={user?.avatar}/>
+            (currentUser?.id !== friend?.id ? (
+              <div key={friend.id} className='friends-inner'>          
+            <> 
+                <div key={friend?.id} className='friend'>
+                  <NavLink className='friend-div' to={`/users/${friend?.id}`}>
+                    <img className='friend-img' src={friend?.avatar}/>
                   </NavLink>
-                  <NavLink className='friend-name' to={`/users/${user.id}`}>
-                    {user?.username}
+                  <NavLink className='friend-name' to={`/users/${friend?.id}`}>
+                    {friend?.username}
                   </NavLink>
                 </div>
-            ))}
                   <span>
                     <hr/>
                   </span>
             </>
           </div>
+            ): null) 
             ))}
         </div>
       </div>

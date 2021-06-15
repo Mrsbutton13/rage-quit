@@ -68,6 +68,7 @@ function reducer(state = initialState, action) {
   }
 }
 
+
 export const signUp = (user) => async (dispatch) => {
   const {username, email, bio, avatar, gamertag, password } = user
   const formData = new FormData()

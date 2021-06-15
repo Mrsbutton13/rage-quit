@@ -8,7 +8,7 @@ import currentUser from './currentUser'
 import gameComment from './gameComment'
 import friend from './currentUserFriend'
 import postComment from './postComment'
-import userGame from './userGame'
+import userGame from './currentUserGame'
 import userFriend from './userFriend'
 import otherUser from './otherUser'
 
