@@ -9,7 +9,7 @@ import { getGComment } from '../../store/gameComment'
 import GameComment from '../CommentComponent'
 import { getUser } from '../../store/user'
 import GameButton from '../GameButton'
-import { getUserGames } from '../../store/userGame'
+import { getUserGames } from '../../store/currentUserGame'
 import Footer from '../Footer'
 
 

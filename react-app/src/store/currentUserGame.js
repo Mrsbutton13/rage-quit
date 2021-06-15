@@ -19,12 +19,12 @@ const removeUserGame = () => ({
 
 
 export const deleteGame = (gameId) => async() => {
-  await fetch(`/api/userGames/${gameId}`, {method: 'DELETE'})
+  await fetch(`/api/games/userGames/${gameId}`, {method: 'DELETE'})
 }
 
 export const addGame = (userGame) => async(dispatch) => {
   const { userId, gameId } = userGame
-  const res = await fetch('/api/userGames', {
+  const res = await fetch('/api/games/userGames', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -40,7 +40,7 @@ export const addGame = (userGame) => async(dispatch) => {
 }
 
 export const getUserGames = () => async(dispatch) => {
-  const res = await fetch('/api/userGames')
+  const res = await fetch('/api/games/userGames')
   const data = await res.json()
   dispatch(setUserGame(data.userGame))
 }

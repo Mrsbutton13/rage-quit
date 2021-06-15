@@ -19,30 +19,3 @@ def api_get_platform():
   return {'platform': [platform.to_dict() for platform in platforms]}
 
 
-@api_routes.route('/userGames')
-def api_get_game():
-  userGames = UserGame.query.all()
-  return {'userGame': [userGame.to_dict() for userGame in userGames]}
-
-
-@api_routes.route('/userGames', methods=['POST'])
-@login_required
-def api_add_game():
-  data = request.get_json()
-  userGame = UserGame(user_id=current_user.id, 
-                      game_id=data['gameId'])
-  db.session.add(userGame)
-  db.session.commit()
-  return userGame.to_dict()
-
-
-@api_routes.route('/userGames/<int:userGameId>', methods=['DELETE'])
-@login_required
-def api_delete_userGame(userGameId):
-  try:
-    userGame = db.session.query(UserGame).get(userGameId)
-    db.session.delete(userGame)
-    db.session.commit()
-  except:
-    return 'unsuccessful'
-  return 'successful'

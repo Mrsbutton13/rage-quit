@@ -1,3 +1,5 @@
+import { setCurrentUser } from "./currentUser"
+
 const ADD_FRIEND = 'friend/addFriend'
 const SET_FRIEND = 'friend/setFriend'
 const REMOVE_FRIEND = 'friend/removeFriend'

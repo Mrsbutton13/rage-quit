@@ -2,9 +2,9 @@ from flask import Blueprint, request
 from app.models.db import db 
 from flask_login import current_user, login_required
 from datetime import datetime
-from sqlalchemy import desc, or_
+from sqlalchemy import desc, or_, and_
 
-from app.models import Game, Category, GameComment
+from app.models import Game, Category, GameComment, UserGame
 
 games_routes = Blueprint('/games', __name__)
 
@@ -49,3 +49,33 @@ def games_create_comment():
   db.session.add(comment)
   db.session.commit()
   return comment.to_dict()
+
+@games_routes.route('/userGames')
+@login_required
+def games_get_currentUsersGame():
+  gameIds = db.session.query(UserGame).filter(current_user.id == UserGame.user_id)
+  userGames = db.session.query(Game).filter(and_(UserGame.game_id == Game.id, current_user.id == UserGame.user_id))
+  return {'userGame': [userGame.to_dict() for userGame in userGames]}
+
+
+@games_routes.route('/userGames', methods=['POST'])
+@login_required
+def games_add_game():
+  data = request.get_json()
+  userGame = UserGame(user_id=current_user.id, 
+                      game_id=data['gameId'])
+  db.session.add(userGame)
+  db.session.commit()
+  return userGame.to_dict()
+
+
+@games_routes.route('/userGames/<int:userGameId>', methods=['DELETE'])
+@login_required
+def games_delete_userGame(userGameId):
+  try:
+    userGame = db.session.query(UserGame).get(userGameId)
+    db.session.delete(userGame)
+    db.session.commit()
+  except:
+    return 'unsuccessful'
+  return 'successful'
