@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { addAFriend, getFriend } from '../../store/currentUserFriend'
+import { addAFriend, getFriendId } from '../../store/friend'
 
 import './FriendButton.css'
 import { getUserFriend } from '../../store/userFriend'
@@ -31,7 +31,7 @@ function FriendButton () {
     }
     await dispatch(addAFriend(friend));
     await dispatch(getUserFriend(userId))
-    await dispatch(getFriend())
+    await dispatch(getFriendId())
   };
 
   

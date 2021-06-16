@@ -2,16 +2,17 @@ from flask import Blueprint, request
 from app.models.db import db 
 from flask_login import current_user, login_required
 from datetime import datetime
-from sqlalchemy import desc, or_
+from sqlalchemy import desc, or_, and_
 
-from app.models import Post, PostComment
+from app.models import Post, PostComment, Friend, User
 from app.forms import post_form
 
 post_routes = Blueprint('/posts', __name__)
 
 @post_routes.route("")
-def post_posts_all():
-  posts = Post.query.all()
+@login_required
+def get_currentUser_and_friends_posts():
+  posts = db.session.query(Post).filter(or_(Post.user_id == Friend.user_id, Post.user_id == Friend.friend_id, Post.user_id == current_user.id))
   return {'post': [post.to_dict() for post in posts]}
 
 

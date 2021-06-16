@@ -10,7 +10,6 @@ const setFriend = (userFriend) => ({
 export const getUserFriend = (userId) => async(dispatch) => {
   const res = await fetch(`/api/friends/${userId}`)
   const data = await res.json()
-  console.log(data)
   dispatch(setFriend(data.userFriend))
 }
 

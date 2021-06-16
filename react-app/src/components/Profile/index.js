@@ -15,29 +15,15 @@ function Profile () {
   const dispatch = useDispatch()
   const [ loaded, setLoaded ] = useState(false)
   const currentUser = useSelector((state) => state.currentUser.user)
-  const friends = useSelector((state) => Object.values(state.friend))
+  const friends = useSelector((state) => Object.values(state.currentUsersFriend))
   const userGames = useSelector((state) => Object.values(state.userGame))
-  const games = useSelector((state) => Object.values(state.game))
-  const allPosts = useSelector((state) => Object.values(state.post))
-  console.log(userGames)
-  // let posts 
-  // {currentUser.posts?.map((post) => (
-  //   <>    
-  //     <Post post={post} user={currentUser}/>
-  //   </>
-  // ))}
-
-  {allPosts.map(post => {
-
-  })}
-  
-  
+  const posts = useSelector((state) => Object.values(state.post))
+  console.log(posts)
 
   useEffect(async() => {
    await dispatch(setCurrentUser())
    await dispatch(getUserGames())
    await dispatch(getFriend())
-   await dispatch(getGames())
    await dispatch(getPost())
    await setLoaded(true)
   }, [dispatch])
@@ -90,7 +76,15 @@ function Profile () {
             <PostFormModal />
           </div>
           <div className='post'>
-          
+            {friends.map(user => (
+              <>
+              {posts.map(post => (
+                (user?.id === post?.user_id ? (
+                  <Post post={post} user={user} />
+                ):null)
+                ))}
+                </>
+              ))}
           </div>
         </div>
         <div className='friends-div'>
