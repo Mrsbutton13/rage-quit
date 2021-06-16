@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { setCurrentUser } from '../../store/currentUser'
 import { getFriend } from '../../store/currentUserFriend'
-import { getGames } from '../../store/game'
 import { getPost } from '../../store/post'
 import { getUserGames } from '../../store/currentUserGame'
 import Post from '../PostComponent'
@@ -15,29 +14,14 @@ function Profile () {
   const dispatch = useDispatch()
   const [ loaded, setLoaded ] = useState(false)
   const currentUser = useSelector((state) => state.currentUser.user)
-  const friends = useSelector((state) => Object.values(state.friend))
-  const userGames = useSelector((state) => Object.values(state.userGame))
-  const games = useSelector((state) => Object.values(state.game))
-  const allPosts = useSelector((state) => Object.values(state.post))
-  console.log(userGames)
-  // let posts 
-  // {currentUser.posts?.map((post) => (
-  //   <>    
-  //     <Post post={post} user={currentUser}/>
-  //   </>
-  // ))}
-
-  {allPosts.map(post => {
-
-  })}
-  
-  
+  const friends = useSelector((state) => Object.values(state.currentUsersFriend))
+  const userGames = useSelector((state) => Object.values(state.currentUserGame))
+  const posts = useSelector((state) => Object.values(state.post))
 
   useEffect(async() => {
    await dispatch(setCurrentUser())
    await dispatch(getUserGames())
    await dispatch(getFriend())
-   await dispatch(getGames())
    await dispatch(getPost())
    await setLoaded(true)
   }, [dispatch])
@@ -90,7 +74,15 @@ function Profile () {
             <PostFormModal />
           </div>
           <div className='post'>
-          
+            {friends.map(user => (
+              <>
+              {posts.map(post => (
+                (user?.id === post?.user_id ? (
+                  <Post post={post} user={user} />
+                ):null)
+                ))}
+                </>
+              ))}
           </div>
         </div>
         <div className='friends-div'>

@@ -9,23 +9,27 @@ from app.forms import friend_form
 
 friends_routes = Blueprint('/friends', __name__)
 
-@friends_routes.route('/')
+@friends_routes.route('')
+@login_required
+def friends_get_friendIds():
+  friend = db.session.query(Friend).filter(or_(Friend.user_id == current_user.id, Friend.friend_id == current_user.id))
+  return {'friendId': [friendId.to_dict() for friendId in friend]}
+
+@friends_routes.route('/currentUser')
 @login_required
 def friends_get_currentUserFriend():
-  friends = db.session.query(Friend).filter(or_(Friend.user_id == current_user.id, Friend.friend_id == current_user.id))
   users = db.session.query(User).filter(and_(or_(Friend.user_id == User.id, Friend.friend_id == User.id),or_(current_user.id == Friend.friend_id, current_user.id == Friend.user_id)))
-  return {'friend' : [friend.to_dict() for friend in users]}
+  return {'currentUsersFriend' : [currentUsersFriend.to_dict() for currentUsersFriend in users]}
 
 
 @friends_routes.route('/<int:userId>')
 def friends_get_usrfriend(userId):
-  usersFriends = db.session.query(Friend).filter(or_(Friend.user_id == userId, Friend.friend_id == userId))
   users = db.session.query(User).filter(and_(or_(Friend.user_id == User.id, Friend.friend_id == User.id),or_(userId == Friend.friend_id, userId == Friend.user_id)))
   return {'userFriend' : [userFriend.to_dict() for userFriend in users]}
   
 
 
-@friends_routes.route('/', methods=['POST'])
+@friends_routes.route('', methods=['POST'])
 @login_required
 def friends_add_friend():
   data = request.get_json()
