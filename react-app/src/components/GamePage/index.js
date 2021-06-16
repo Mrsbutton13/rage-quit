@@ -9,9 +9,7 @@ import { getGComment } from '../../store/gameComment'
 import GameComment from '../CommentComponent'
 import { getUser } from '../../store/user'
 import GameButton from '../GameButton'
-import { getUserGames } from '../../store/currentUserGame'
-import Footer from '../Footer'
-
+import { getUserGames, deleteGame } from '../../store/userGames'
 
 function GamePage () {
   const dispatch = useDispatch()
@@ -20,34 +18,53 @@ function GamePage () {
   const categories = useSelector(state => Object.values(state.category))
   const comments = useSelector(state => Object.values(state.gameComment))
   const users = useSelector(state => Object.values(state.users))
+  const games = useSelector(state => Object.values(state.joinsIds))
   const currentUser = useSelector(state => state.currentUser.user)
 
-  let {gameId} = useParams()
-  
+  const {gameId} = useParams()
+  console.log(gameId)
   const game = gameItems[gameId]
+  
+  let userId
+  if(currentUser){
+    userId = currentUser.id
+  } else {
+    userId = 0
+  }
 
+  let newGameId
+  let newGame
+  {games.map(userGame => {
+    if((userGame?.game_id == gameId && userGame?.user_id == userId)) {
+      newGameId = userGame?.id
+    }
+    if(!newGameId) {
+      newGame = 
+      <GameButton/>
+    } else {
+      newGame = 
+      <a className='delete-game' onClick={() => deleteAGame(newGameId)}>
+     <i class="fas fa-gamepad"></i><div>Remove Game</div>
+     </a>
+    }
+  })}
+
+  if(!currentUser) {
+    newGame =
+      <>
+      <div></div>
+      </>
+  } 
   
   useEffect(async() => {
     await dispatch(getUser())
     await dispatch(getCategory())
     await dispatch(getGames(gameId))
     await dispatch(getGComment(gameId))
-    await dispatch(getUserGames())
+    await dispatch(getUserGames(userId))
     await setLoaded(true)
   }, [dispatch])
   
-  let addG 
-  if(!currentUser) {
-    addG =
-      <>
-      <div></div>
-      </>
-  } else {
-    addG =
-      <>
-      <GameButton/>
-      </>
-  }
 
   let commentG
   if(!currentUser) {
@@ -62,6 +79,11 @@ function GamePage () {
     </>
   }
 
+   const deleteAGame = async(gameId) => {
+   await dispatch(deleteGame(gameId))
+   await dispatch(getUserGames(userId))
+ }
+
   return (
     <>
     {loaded && (
@@ -71,7 +93,7 @@ function GamePage () {
         <div className='gameP-info'>
           <div className='title-div'>
             <h1 className='game-title'>{game?.title}</h1>
-            {addG}
+            {newGame}
           </div>
           {categories.map((category) => (
             (category?.id == game?.category_id ? (
@@ -103,7 +125,6 @@ function GamePage () {
       </div>
     </>
     )}
-    <Footer />
     </>
   )
 }

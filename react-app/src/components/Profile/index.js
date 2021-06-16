@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { setCurrentUser } from '../../store/currentUser'
 import { getFriend } from '../../store/currentUserFriend'
 import { getPost } from '../../store/post'
-import { getUserGames } from '../../store/currentUserGame'
+import { getCurrentUserGames } from '../../store/currentUserGame'
 import Post from '../PostComponent'
 import UserGame from '../UserGameComponent'
 import PostFormModal from '../UserPost'
@@ -17,10 +17,10 @@ function Profile () {
   const friends = useSelector((state) => Object.values(state.currentUsersFriend))
   const userGames = useSelector((state) => Object.values(state.currentUserGame))
   const posts = useSelector((state) => Object.values(state.post))
-
+  console.log(userGames)
   useEffect(async() => {
    await dispatch(setCurrentUser())
-   await dispatch(getUserGames())
+   await dispatch(getCurrentUserGames())
    await dispatch(getFriend())
    await dispatch(getPost())
    await setLoaded(true)

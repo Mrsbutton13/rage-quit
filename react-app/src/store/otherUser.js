@@ -10,7 +10,6 @@ const setUser = (otherUser) => ({
 export const getOneUser = (userId) => async (dispatch) => {
   const res = await fetch(`/api/users/${userId}`)
   const data = await res.json()
-  console.log(data)
   dispatch(setUser(data))
   return data
 }
