@@ -8,7 +8,7 @@ import currentUser from './currentUser'
 import gameComment from './gameComment'
 import friend from './friend'
 import postComment from './postComment'
-import userGame from './currentUserGame'
+import currentUserGame from './currentUserGame'
 import userFriend from './userFriend'
 import otherUser from './otherUser'
 import currentUsersFriend from './currentUserFriend'
@@ -18,14 +18,14 @@ const rootReducer = combineReducers({
   category,
   users,
   post,
-  currentUser,
   gameComment,
   friend,
   postComment,
-  userGame,
-  userFriend,
+  currentUser,
+  currentUserGame,
+  currentUsersFriend,
   otherUser,
-  currentUsersFriend
+  userFriend,
 })
 
 const logger = require('redux-logger').default

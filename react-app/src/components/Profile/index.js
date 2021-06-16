@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { setCurrentUser } from '../../store/currentUser'
 import { getFriend } from '../../store/currentUserFriend'
-import { getGames } from '../../store/game'
 import { getPost } from '../../store/post'
 import { getUserGames } from '../../store/currentUserGame'
 import Post from '../PostComponent'
@@ -16,9 +15,8 @@ function Profile () {
   const [ loaded, setLoaded ] = useState(false)
   const currentUser = useSelector((state) => state.currentUser.user)
   const friends = useSelector((state) => Object.values(state.currentUsersFriend))
-  const userGames = useSelector((state) => Object.values(state.userGame))
+  const userGames = useSelector((state) => Object.values(state.currentUserGame))
   const posts = useSelector((state) => Object.values(state.post))
-  console.log(posts)
 
   useEffect(async() => {
    await dispatch(setCurrentUser())

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { deleteFriend, getFriendId} from "../../store/friend"
-import { getPost } from '../../store/post'
 import FriendButton from "../FriendButton"
 import Post from '../PostComponent'
 import { getUserGames } from '../../store/currentUserGame'
@@ -53,7 +52,6 @@ function User() {
   }
 
   useEffect( async () => {
-    await dispatch(getPost())
     await dispatch(getFriendId())
     await dispatch(getOneUser(userId))
     await dispatch(getGames())
@@ -63,7 +61,7 @@ function User() {
     setLoaded(true)
   }, [dispatch])
 
-  console.log(friendId)    
+  
   const deleteAFriend = async(friendId) => {
     await dispatch(deleteFriend(friendId))
     await dispatch(getUserFriend(userId))
@@ -108,11 +106,9 @@ function User() {
           </div>
         </div>
         <div className='postU'>
-          {/* {posts?.map((post) => (
-            (userId == post?.user_id ? (
+          {user.posts.map((post) => (
               <Post post={post} user={user}/>
-              ): null)
-              ))} */}
+              ))}
         </div>
         <div className='userU-games'>
           <div className='yourU-games'>

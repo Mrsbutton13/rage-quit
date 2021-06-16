@@ -1,16 +1,16 @@
-const ADD_UGAME ='userGame/addUserGame'
-const SET_UGAME ='userGame/setUserGame'
-const REMOVE_UGAME = 'userGame/removeUserGame'
+const ADD_UGAME ='currentUserGame/addUserGame'
+const SET_UGAME ='currentUserGame/setUserGame'
+const REMOVE_UGAME = 'currentUserGame/removeUserGame'
 
 
-const addUserGame = (userGame) => ({
+const addUserGame = (currentUserGame) => ({
   type: ADD_UGAME,
-  userGame
+  currentUserGame
 })
 
-const setUserGame = (userGame) => ({
+const setUserGame = (currentUserGame) => ({
   type: SET_UGAME,
-  userGame
+  currentUserGame
 })
 
 const removeUserGame = () => ({
@@ -22,8 +22,8 @@ export const deleteGame = (gameId) => async() => {
   await fetch(`/api/games/userGames/${gameId}`, {method: 'DELETE'})
 }
 
-export const addGame = (userGame) => async(dispatch) => {
-  const { userId, gameId } = userGame
+export const addGame = (currentUserGame) => async(dispatch) => {
+  const { userId, gameId } = currentUserGame
   const res = await fetch('/api/games/userGames', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
@@ -34,7 +34,7 @@ export const addGame = (userGame) => async(dispatch) => {
   })
   if(res.ok) {
     const data = await res.json()
-    await dispatch(addUserGame(data.userGame))
+    await dispatch(addUserGame(data.currentUserGame))
     return data
   }
 }
@@ -42,7 +42,7 @@ export const addGame = (userGame) => async(dispatch) => {
 export const getUserGames = () => async(dispatch) => {
   const res = await fetch('/api/games/userGames')
   const data = await res.json()
-  dispatch(setUserGame(data.userGame))
+  dispatch(setUserGame(data.currentUserGame))
 }
 
 function reducer(state = {}, action) {
@@ -50,16 +50,16 @@ function reducer(state = {}, action) {
   switch(action.type) {
     case ADD_UGAME:
       newState = {...state}
-      newState['userGame'] = action.userGame
+      newState['currentUserGame'] = action.currentUserGame
       return newState
     case SET_UGAME:
       newState = {}
-      action.userGame.forEach(game => {
+      action.currentUserGame.forEach(game => {
         newState[game.id] = game
       })
       return newState
     case REMOVE_UGAME:
-      return {...state, userGame: null}
+      return {...state, currentUserGame: null}
     default:
       return state
   }
