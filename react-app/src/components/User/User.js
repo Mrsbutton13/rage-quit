@@ -4,8 +4,7 @@ import { useParams } from "react-router-dom"
 import { deleteFriend, getFriendId} from "../../store/friend"
 import FriendButton from "../FriendButton"
 import Post from '../PostComponent'
-import { getUserGames } from '../../store/currentUserGame'
-import { getGames } from '../../store/game'
+import { getOtherUserGame } from '../../store/otherUserGames'
 import {getOneUser} from '../../store/otherUser'
 import './User.css'
 import UserGame from "../UserGameComponent"
@@ -16,8 +15,7 @@ function User() {
   const dispatch = useDispatch()
   const [loaded, setLoaded ] = useState(false)
   const userFriends = useSelector((state) => Object.values(state.friend))
-  const games = useSelector((state) => Object.values(state.game))
-  const userGames = useSelector((state) => Object.values(state.userGame))
+  const otherUserGames = useSelector((state) => Object.values(state.otherUserGame))
   const currentUser = useSelector(state => state.currentUser.user)
   const friends = useSelector((state) => Object.values(state.userFriend))
   const user = useSelector((state) => state.otherUser.otherUser)
@@ -54,10 +52,9 @@ function User() {
   useEffect( async () => {
     await dispatch(getFriendId())
     await dispatch(getOneUser(userId))
-    await dispatch(getGames())
-    await dispatch(getUserGames())
     await dispatch(setCurrentUser())
     await dispatch(getUserFriend(userId))
+    await dispatch(getOtherUserGame(userId))
     setLoaded(true)
   }, [dispatch])
 
@@ -73,7 +70,6 @@ function User() {
     <>
     {loaded && (
       <>
-      <div className='mainU-container'>
         <div className='profileU-container'>
           <img className='userU-pic' src={user.avatar}/>
           <div className='userU-info'>
@@ -82,6 +78,10 @@ function User() {
             <p>{user.bio}</p>
           </div>
         </div>
+        <span>
+          <hr/>
+        </span>
+      <div className='mainU-container'>
         <div className='friendsU-div'>
             <h3 className='friendU-title'>{user.username}'s friends</h3>
           <div className='friendsU-inner'>  
@@ -106,8 +106,14 @@ function User() {
           </div>
         </div>
         <div className='postU'>
+          <div className='checkout-title'>
+            <h3>Checkout what {user.username} is up too!</h3>
+          </div>
+          <span className='postU-span'>
+            <hr/>
+          </span>
           {user.posts.map((post) => (
-              <Post post={post} user={user}/>
+              <Post key={post.id} post={post} user={user}/>
               ))}
         </div>
         <div className='userU-games'>
@@ -118,15 +124,11 @@ function User() {
             <hr/>
           </span>
           <div className='innerU-games'>
-          {userGames.map(userGame => (
-            <div key={userGame.id}>
-           {games.map(game => (
-             (game?.id === userGame?.game_id && userId == userGame?.user_id ? (
+          {otherUserGames.map(game => (
+            <div key={game.id}>
                < UserGame key={game.id} game={game} />
-               ):null)
-               ))}
           </div>
-          ))}
+          ))} 
           </div>
         </div>
         </div>

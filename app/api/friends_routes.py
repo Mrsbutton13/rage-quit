@@ -23,7 +23,7 @@ def friends_get_currentUserFriend():
 
 
 @friends_routes.route('/<int:userId>')
-def friends_get_usrfriend(userId):
+def friends_get_userfriend(userId):
   users = db.session.query(User).filter(and_(or_(Friend.user_id == User.id, Friend.friend_id == User.id),or_(userId == Friend.friend_id, userId == Friend.user_id)))
   return {'userFriend' : [userFriend.to_dict() for userFriend in users]}
   

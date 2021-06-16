@@ -50,19 +50,23 @@ def games_create_comment():
   db.session.commit()
   return comment.to_dict()
 
+@games_routes.route('/userGames/<int:userId>')
+def games_get_userGameId(userId):
+  userGameId = db.session.query(UserGame).filter(UserGame.user_id == userId)
+  return {'joinsIds': [joinsIds.to_dict() for joinsIds in userGameId]}
+  
 
-@games_routes.route('/userGames')
+@games_routes.route('/currentUserGames')
 @login_required
 def games_get_currentUsersGame():
   userGames = db.session.query(Game).filter(and_(UserGame.game_id == Game.id, current_user.id == UserGame.user_id))
   return {'currentUserGame': [currentUserGame.to_dict() for currentUserGame in userGames]}
 
 
-@games_routes.route('/userGames/<int:userId>')
-@login_required
+@games_routes.route('/<int:userId>')
 def games_get_usersGame(userId):
   otherUserGames = db.session.query(Game).filter(and_(UserGame.game_id == Game.id, userId == UserGame.user_id))
-  return {'otherUserGame': [otherUserGame.to_dict() for otherUserGame in otherUsersGames]}
+  return {'otherUserGame': [otherUserGame.to_dict() for otherUserGame in otherUserGames]}
 
 
 @games_routes.route('/userGames', methods=['POST'])
