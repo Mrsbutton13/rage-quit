@@ -17,7 +17,7 @@ function Profile () {
   const friends = useSelector((state) => Object.values(state.currentUsersFriend))
   const userGames = useSelector((state) => Object.values(state.currentUserGame))
   const posts = useSelector((state) => Object.values(state.post))
-  console.log(userGames)
+  
   useEffect(async() => {
    await dispatch(setCurrentUser())
    await dispatch(getCurrentUserGames())
