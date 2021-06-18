@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import './NavBar.css'
-import SearchBar from '../SearchBar';
+// import SearchBar from '../SearchBar';
 import { useSelector } from 'react-redux';
 import ProfileButton from '../ProfileButton';
 import CategoryButton from '../CategoryButton';
@@ -34,7 +34,7 @@ const NavBar = () => {
     <nav>
         <CategoryButton/>
       <div className='middle'>
-        <SearchBar />
+        {/* <SearchBar /> */}
       </div>
       <div className='right-side'>
         {links}

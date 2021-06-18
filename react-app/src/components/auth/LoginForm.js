@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { login, setCurrentUser } from "../../store/currentUser";
 import './Login.css'
 import background from '../../images/background.png'
-import Footer from "../Footer";
+
 
 const LoginForm = () => {
   const dispatch = useDispatch()

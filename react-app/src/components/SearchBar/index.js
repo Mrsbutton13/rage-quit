@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Redirect } from 'react-router'
 import { getGames } from '../../store/game'
 import './SearchBar.css'
 
@@ -21,7 +22,6 @@ const SearchBar = () => {
       })
       setInput('')
       setGameList(filtered)
-      console.log(filtered)
       return gameList
     }
   
@@ -31,6 +31,7 @@ const SearchBar = () => {
   }, [dispatch])
 
   return (
+    <>
       <form onSubmit={updateSearch}>
       <input className='search' 
       placeholder='search' 
@@ -38,6 +39,10 @@ const SearchBar = () => {
       onChange={(e) => setInput(e.target.value)}/>
       <button className='search-button' type='submit'>search</button>
       </form>
+      {gameList.length > 0 && (
+        <Redirect to='/results'/>
+      )}
+      </>
   )
 }
 

@@ -22,7 +22,6 @@ function GamePage () {
   const currentUser = useSelector(state => state.currentUser.user)
 
   const {gameId} = useParams()
-  console.log(gameId)
   const game = gameItems[gameId]
   
   let userId
@@ -31,19 +30,23 @@ function GamePage () {
   } else {
     userId = 0
   }
-
+  
   let newGameId
   let newGame
+  if(games.length <= 0) {
+    newGame = 
+      <GameButton/>
+  }
   {games.map(userGame => {
     if((userGame?.game_id == gameId && userGame?.user_id == userId)) {
       newGameId = userGame?.id
     }
     if(!newGameId) {
       newGame = 
-      <GameButton/>
+      <GameButton key={userGame.id}/>
     } else {
       newGame = 
-      <a className='delete-game' onClick={() => deleteAGame(newGameId)}>
+      <a key={userGame.id} className='delete-game' onClick={() => deleteAGame(newGameId)}>
      <i class="fas fa-gamepad"></i><div>Remove Game</div>
      </a>
     }
@@ -89,6 +92,7 @@ function GamePage () {
     {loaded && (
     <>
       <div className='game-page'>
+        <div className='game-img-title-container'>
         <img src={game?.img} className='game-pic'/>
         <div className='gameP-info'>
           <div className='title-div'>
@@ -104,8 +108,9 @@ function GamePage () {
           {game?.description}
         </div>
         </div>
+        </div>
         <span>
-          <hr/>
+          <hr className ='game-span'/>
         </span>
         <div className='game-form'>
           {commentG}

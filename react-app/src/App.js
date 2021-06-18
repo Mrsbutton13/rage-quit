@@ -12,7 +12,6 @@ import { setCurrentUser } from './store/currentUser'
 import { useDispatch, useSelector } from 'react-redux'
 import GamePage from "./components/GamePage";
 import Category from "./components/Category";
-import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch()

@@ -42,7 +42,6 @@ export const addGame = (userGame) => async(dispatch) => {
 export const getUserGames = (userId) => async(dispatch) => {
   const res = await fetch(`/api/games/userGames/${userId}`)
   const data = await res.json()
-  console.log(data)
   dispatch(setUserGame(data.joinsIds))
 }
 

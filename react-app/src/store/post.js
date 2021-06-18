@@ -25,7 +25,6 @@ export const deletePost = (postId) => async() => {
 export const getPost = () => async (dispatch) => {
   const res = await fetch('/api/posts')
   const data = await res.json()
-  console.log(data)
   dispatch(setPost(data.post))
 }
 

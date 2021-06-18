@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { getCategory } from '../../store/category'
 import { getGames } from '../../store/game'
-import Footer from '../Footer'
 import Game from '../GameComponent'
 import './Category.css'
 
@@ -42,7 +41,6 @@ function Category() {
         </div>
         </>
     )}
-    <Footer/>
     </>
   )
 }

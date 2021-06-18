@@ -48,14 +48,14 @@
 .category1 {
   border: 1px solid black;
   border-radius: 4px;
-  background-color: white;
+  background-color: #424242;
   height: 30px;
   font-size: 20px;
   padding-inline-start: 13px;
   width: 240px;
   padding-bottom: 5px;
   margin-left: 20px;
-  color: black;
+  color: #b38cfb;
 }
 
 .category1:hover,
@@ -73,6 +73,7 @@
 .user {
    border-radius: 50%;
    height: 60px;
+   width: 60px;
 }
 
 .user-button {
@@ -96,12 +97,13 @@
 .profile {
   border: 1px solid black;
   border-radius: 4px;
-  background-color: white;
+  background-color: #424242;
   height: 30px;
   font-size: 20px;
   padding-inline-start: 13px;
   width: 165px;
   padding-bottom: 5px;
+  color: #b38cfb;
 }
 
 

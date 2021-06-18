@@ -52,6 +52,8 @@ function PostForm() {
           onChange={updateBody}
           placeholder='What cha thinking?' >
           </textarea>
+          <lable className='file-upload'>
+            Upload an image
           <input 
           className='image-input'
           type='file'
@@ -59,6 +61,7 @@ function PostForm() {
           accept='image/*'
           onChange={addImg}
           ></input>
+          </lable>
           <button className='post-button' type='submit' value='submit'>
             <i className="far fa-share-square"></i>
           </button>
