@@ -74,7 +74,7 @@ function Profile () {
             </span>
             <div className='inner-games'>
               {userGames.map(game => (
-                <UserGame key={game.id} game={game}/>
+                <UserGame key={game?.id} game={game}/>
               ))}
             </div>
           </div>
@@ -85,10 +85,10 @@ function Profile () {
           </div>
           <div className='post'>
             {sortedPosts.map(post => (
-              <div key={post.id}>
+              <div key={post?.id}>
               {usersFriends.map(user => (
               (user?.id === post?.user_id ? (
-                <Post key={user.id} post={post} user={user} />
+                <Post key={user?.id} post={post} user={user} />
               ) : null)
                 ))}
                 </div>

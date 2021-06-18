@@ -101,7 +101,7 @@ function GamePage () {
           </div>
           {categories.map((category) => (
             (category?.id == game?.category_id ? (
-              <span key={category.id} className='category'>{category.name}</span>
+              <span key={category?.id} className='category'>{category?.name}</span>
             ): null)
           ))}
         <div className='gameO-info'>
@@ -119,10 +119,10 @@ function GamePage () {
           <hr/>
         </span>
         {users.map((user) => (
-          <div key={user.id}>
+          <div key={user?.id}>
         {comments.map((comment) => (
           (comment?.game_id == game?.id && comment?.user_id == user?.id ? (
-            <GameComment key={comment.id} comment={comment} user={user} />
+            <GameComment key={comment?.id} comment={comment} user={user} />
             ): null)
             ))}
           </div>

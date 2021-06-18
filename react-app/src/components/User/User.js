@@ -97,7 +97,7 @@ function User() {
           <div className='friendsU-inner'>  
             {friends.map(friend => (
               (friend.id !== user.id ? (
-                <div key={friend.id} className='friendU'>
+                <div key={friend?.id} className='friendU'>
                   <a className='friendU-div' onClick={() => {window.location.href=`/users/${friend?.id}`}}>
                     <img className='friendU-img' src={friend?.avatar}/>
                   </a>
@@ -121,7 +121,7 @@ function User() {
           </span>
           <div className='post-holder'>
           {user.posts.map((post) => (
-            <Post key={post.id} post={post} user={user}/>
+            <Post key={post?.id} post={post} user={user}/>
             ))}
           </div>
         </div>
@@ -134,7 +134,7 @@ function User() {
           </span>
           <div className='innerU-games'>
           {otherUserGames.map(game => (
-               <UserGame key={game.id} game={game} />
+               <UserGame key={game?.id} game={game} />
           ))} 
           </div>
         </div>

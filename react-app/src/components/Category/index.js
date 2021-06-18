@@ -30,12 +30,12 @@ function Category() {
     {loaded && (
         <>
         <div className='title-container'>
-          <h1 className='category-titlel'>{category.name}</h1>
+          <h1 className='category-titlel'>{category?.name}</h1>
         </div>
         <div className='category-container'>
           {games.map(game=> (
             (game?.category_id == id ? (
-              <Game key={game.id} game={game} />
+              <Game key={game?.id} game={game} />
               ): null)
           ))}
         </div>

@@ -85,7 +85,7 @@ export const CategoriezedGames = () => {
           </div>
         <div className='game-container'>
           {games.filter(game => game?.category_id === category.id).slice(0,6).map(game => (
-            <Game key={game.id} game={game} category={category.id}/>
+            <Game key={game?.id} game={game} category={category.id}/>
             ))
           }
           </div>
