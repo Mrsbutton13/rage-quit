@@ -7,7 +7,7 @@ function UserGame({ game }) {
   return (
     <>
       <div className='user-game-div'>
-        <NavLink to={`/games/${game?.id}`}>
+        <NavLink className='user-game-title' to={`/games/${game?.id}`}>
           <img className='user-game-img' src={game?.img} alt='game' />
         </NavLink>
         <div className = 'user-game-info'>

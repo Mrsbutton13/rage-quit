@@ -18,13 +18,14 @@ const removePComment = () => ({
 })
 
 
-export const deletePComment = (postCommentId) => async() => {
-  await fetch (`/api/posts/postComment/${postCommentId}`, {method: 'DELETE'})
+export const deletePComment = (postId) => async() => {
+  await fetch (`/api/posts/postComment/${postId}`, {method: 'DELETE'})
 }
 
 export const getPComment = () => async (dispatch) => {
   const res = await fetch('/api/posts/postComment')
   const data = await res.json()
+  console.log(data)
   dispatch(setPComment(data.postComment))
 }
 

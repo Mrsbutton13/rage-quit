@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { getPComment } from '../../store/postComment'
-
+import { getUser } from '../../store/user'
+import './PostComments.css'
 
 function PostComments({ post }) {
   const dispatch = useDispatch()
@@ -21,7 +22,6 @@ function PostComments({ post }) {
     const closeMenu = () => {
       setShowComments(false)
     }
-
     document.addEventListener('click', closeMenu)
 
     return () => document.removeEventListener('click', closeMenu)
@@ -29,6 +29,7 @@ function PostComments({ post }) {
 
   useEffect(async() => {
     await dispatch(getPComment())
+    await dispatch(getUser())
   },[dispatch])
 
 
@@ -37,25 +38,32 @@ function PostComments({ post }) {
     <a className='comments' onClick={openMenu}>
       <i className="fas fa-comment-dots"></i> Comments
     </a>
-
     {showComments && (
-      <>
+      <div className='post-comment-holder'>
       {postComments.map((comment) => (
         <>
-        {users.filter(user => user?.id === comment?.user_id && post?.id === comment?.post_id).map(user => (
-          <div className='post-container'>
-          <img className='post-user' src={user?.avatar} alt='user avatar'/>
-          <NavLink className='post-username' to={`/users/${user?.id}`}>
+        {users.map(user => (
+          (user?.id == comment?.user_id && post?.id == comment?.post_id ? (
+            <div className='postComment-container'>
+          <span>
+            <hr/>
+          </span>
+          <img className='postComment-user' src={user?.avatar} alt='user avatar'/>
+          <NavLink className='postComment-username' to={`/users/${user?.id}`}>
             {user?.username}
           </NavLink>
-          <div className='post-body'>
+          <div className='postComment-body'>
             {comment?.body}
           </div>
+          <span>
+            <hr/>
+          </span>
           </div>
-          ))}
+          ):null)
+        ))}
         </>
           ))}
-      </>
+      </div>
     )}
     </>
   )

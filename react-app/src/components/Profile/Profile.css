@@ -56,7 +56,6 @@
 }
 
 
-
 .edit,
 .home,
 .public {
@@ -76,12 +75,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
 }
 
-.profile-container::-webkit-scrollbar{
-  display:none;
-}
 .user-info {
   display: flex;
   flex-direction: row;
@@ -111,12 +106,8 @@
 .post {
   overflow-y: scroll;
   height: fit-content;
-  max-height: 89%;
+  max-height: 90%;
 }
-
-.post::-webkit-scrollbar {
-  display: none;
-} 
 
 .user-title,
 .friend-title {
@@ -142,6 +133,8 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 10px;
+  overflow-y: scroll;
+  height: 92%;
 }
 
 .friends-div {
@@ -153,18 +146,19 @@
   flex-direction: column;
   align-items: center;
   color: #b38cfb;
-  overflow-y: scroll;
 }
 
-.friends-div::-webkit-scrollbar {
+.friends-inner::-webkit-scrollbar,
+.inner-games::-webkit-scrollbar,
+.post::-webkit-scrollbar {
   display: none;
 }
 
 .friends-inner {
   display: flex;
   flex-direction:inherit;
-  flex-wrap: wrap;
   width: 90%;
+  overflow-y: scroll;
 }
 
 .friend-img{

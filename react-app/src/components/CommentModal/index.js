@@ -15,7 +15,7 @@ function PostCommentModal({post}) {
       </a>
       {showModal && (
         <Modal onClose={() => setShowModal(false)} >
-          <PostComment post={post} />
+          <PostComment post={post}/>
         </Modal>
       )}
     </>

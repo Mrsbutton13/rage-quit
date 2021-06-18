@@ -1,6 +1,6 @@
 .user-game-div {
-  width: 150px;
-  height: 200px;
+  width: 85px;
+  height: 130px;
   box-sizing: border-box;
   box-shadow: 0 8px 8px 2px rgb(0 0 0 / 20%);
   margin-left: 5px;
@@ -11,10 +11,15 @@
 .user-game-img {
   vertical-align: middle;
   border: 0;
-  width: 150px;
-  height: 150px;
+  width: 85px;
+  height: 85px;
 }
 
 .user-game-info{
   text-align: center;
+  line-height: 10px;
+}
+
+.user-game-title{
+  font-size: 10px;
 }

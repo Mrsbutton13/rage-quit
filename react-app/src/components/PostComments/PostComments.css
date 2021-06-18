@@ -1,0 +1,43 @@
+.postComment-container {
+  width: 100%;
+  background-color: #424242;
+  padding: 6px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.postComment-body {
+  margin-left: 20%;
+  font-family: 'RocknRoll One',
+    sans-serif;
+  overflow-wrap: break-word;
+  color: #b38cfb;
+}
+
+.postComment-user {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin-left: 20px;
+}
+
+.postComment-username {
+  margin-left: 10px;
+}
+
+.post-comment-holder{
+  background-color: #000000;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  max-height: 700px;
+  overflow-y: scroll;
+}
+.post-comment-holder::-webkit-scrollbar{
+  display: none;
+}
+
+.comments {
+  margin-left: 30px;
+}
+
+

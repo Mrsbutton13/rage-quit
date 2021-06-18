@@ -2,7 +2,6 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { deletePost, getPost } from '../../store/post'
-import { deletePComment } from '../../store/postComment'
 import PostCommentModal from '../CommentModal'
 import PostComments from '../PostComments'
 import './Post.css'
@@ -10,7 +9,14 @@ import './Post.css'
 function Post ({ user, post }) {
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.currentUser.user)
-  
+  const posts = useSelector(state => Object.values(state.post))
+
+  let postId 
+  {posts.map(aPost => {
+    if(aPost?.id == post?.id) {
+      postId = aPost?.id
+    }
+  })}
 
   const deleteAPost = async (postId) => {
       await dispatch(deletePost(postId))
@@ -22,15 +28,11 @@ let userLinks
     userLinks = 
     <>
     <div className='likes'>
-    <div>
-      <i className="far fa-thumbs-up"></i>
-      Like
-    </div>
     <div className='comment-div'>
       <PostCommentModal post={post}/>
     </div>
       <div>
-        <a onClick={() => deleteAPost(post?.id)} >
+        <a onClick={() => deleteAPost(postId)} >
       <i className="far fa-trash-alt"></i>
       Delete
         </a>
@@ -41,10 +43,6 @@ let userLinks
     userLinks = 
     <>
     <div className='likes'>
-    <div>
-      <i className="far fa-thumbs-up"></i>
-      Like
-    </div>
     <div className='comment-div'>
       <PostCommentModal post={post}/>
     </div>
@@ -63,6 +61,9 @@ let userLinks
       <div className='post-body'>
         {post?.body}
       </div>
+      <div className='image-holder'>
+      <img className='post-img' src={post?.post_img}/>
+      </div>
       <span>
         <hr/>
       </span>
@@ -70,7 +71,7 @@ let userLinks
     <span>
         <hr/>
       </span>
-      <div>
+      <div className='postComments'>
         <PostComments post={post} user={user}/>
       </div>
     </div>

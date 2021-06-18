@@ -3,9 +3,10 @@ from app.models.db import db
 from flask_login import current_user, login_required
 from datetime import datetime
 from sqlalchemy import desc, or_, and_
+from app.awsUpload import *
 
 from app.models import Post, PostComment, Friend, User
-from app.forms import post_form
+from app.forms import PostForm
 
 post_routes = Blueprint('/posts', __name__)
 
@@ -25,14 +26,32 @@ def post_get_users(userId):
 @post_routes.route("", methods=['POST'])
 @login_required
 def post_create_post():
-  data = request.get_json()
+  form = PostForm()
   now = datetime.utcnow()
-  post = Post(user_id=current_user.id, 
-              body=data['body'],
-              created_on=now)
+  post_image = None
+  if 'post_img' not in request.files:
+    upload = None
+  else:
+    post_image = request.files['post_img']
+
+  if post_image and allowed_file(post_image.filename):
+    post_image.filename = get_unique_filename(post_image.filename)
+    upload = upload_file_to_s3(post_image)
+    if upload['url']:
+      upload = upload['url']
+
+  post = Post(
+      user_id = current_user.id,
+      body=form.data['body'],
+      post_img=upload,
+      post_video=form.data['post_video'],
+      created_on=now
+  )
   db.session.add(post)
   db.session.commit()
   return post.to_dict()
+  
+  
 
 
 @post_routes.route('/<int:postId>', methods=['DELETE'])
@@ -66,11 +85,11 @@ def post_create_pComment():
 
 
 
-@post_routes.route('/postComments/<int:postCommentId>', methods=['DELETE'])
+@post_routes.route('/postComments/<int:postId>', methods=['DELETE'])
 @login_required
-def post_delete_postComment(postCommentId):
+def post_delete_postComment(postId):
   try:
-    postComment = db.session.query(PostComment).get(postCommentId)
+    postComment = db.session.query(PostComment).get(postId)
     db.session.delete(postComment)
     db.session.commit()
   except:

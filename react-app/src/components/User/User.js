@@ -19,12 +19,18 @@ function User() {
   const currentUser = useSelector(state => state.currentUser.user)
   const friends = useSelector((state) => Object.values(state.userFriend))
   const user = useSelector((state) => state.otherUser.otherUser)
-
+  console.log(userFriends)
   const { userId }  = useParams();
   const currentUserId = currentUser.id
   
   let friendId
   let newFriend
+  if(userFriends.length === 0) {
+    newFriend = 
+      <>
+        <FriendButton />
+      </>
+  }
   {userFriends.map(userFriend => {
     if((userFriend?.friend_id == userId && currentUserId == userFriend?.user_id) || 
     (userFriend?.user_id == userId && currentUserId == userFriend?.friend_id)){
@@ -65,7 +71,6 @@ function User() {
     await dispatch(getFriendId())
   }
   
-  
   return (
     <>
     {loaded && (
@@ -83,14 +88,16 @@ function User() {
         </span>
       <div className='mainU-container'>
         <div className='friendsU-div'>
-            <h3 className='friendU-title'>{user.username}'s friends</h3>
+            <div className='friends-title'>
+              <h3>{user.username}'s friends</h3>
+            </div>
+            <span className='postU-span'>
+              <hr/>
+            </span>
           <div className='friendsU-inner'>  
             {friends.map(friend => (
               (friend.id !== user.id ? (
                 <div key={friend.id} className='friendU'>
-                  <span>
-                    <hr/>
-                  </span>
                   <a className='friendU-div' onClick={() => {window.location.href=`/users/${friend?.id}`}}>
                     <img className='friendU-img' src={friend?.avatar}/>
                   </a>
@@ -102,19 +109,21 @@ function User() {
                   </span>
                 </div> 
                   ):null)
-            ))}
+                  ))}
           </div>
         </div>
         <div className='postU'>
           <div className='checkout-title'>
-            <h3>Checkout what {user.username} is up too!</h3>
+            <h3>Checkout what {user.username} is up to!</h3>
           </div>
           <span className='postU-span'>
             <hr/>
           </span>
+          <div className='post-holder'>
           {user.posts.map((post) => (
-              <Post key={post.id} post={post} user={user}/>
-              ))}
+            <Post key={post.id} post={post} user={user}/>
+            ))}
+          </div>
         </div>
         <div className='userU-games'>
           <div className='yourU-games'>
@@ -125,9 +134,7 @@ function User() {
           </span>
           <div className='innerU-games'>
           {otherUserGames.map(game => (
-            <div key={game.id}>
-               < UserGame key={game.id} game={game} />
-          </div>
+               <UserGame key={game.id} game={game} />
           ))} 
           </div>
         </div>
