@@ -32,10 +32,10 @@ const rootReducer = combineReducers({
   joinsIds
 })
 
-const logger = require('redux-logger').default
+// const logger = require('redux-logger').default
 const composeEnhancers = 
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const enhancer = composeEnhancers(applyMiddleware(thunk, logger))
+const enhancer = composeEnhancers(applyMiddleware(thunk))
 
 const configureStore = (preloadedState) => {
   return createStore(rootReducer, preloadedState, enhancer)

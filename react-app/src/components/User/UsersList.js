@@ -25,9 +25,7 @@ function UsersList() {
     {loaded && (
       <>
       {users.map((user) => (
-        <>
-          <UserCard user={user} />
-        </>
+          <UserCard key={user.id} user={user} />
       ))}
       </>
     )}

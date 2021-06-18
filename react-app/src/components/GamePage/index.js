@@ -47,7 +47,7 @@ function GamePage () {
     } else {
       newGame = 
       <a key={userGame.id} className='delete-game' onClick={() => deleteAGame(newGameId)}>
-     <i class="fas fa-gamepad"></i><div>Remove Game</div>
+     <i className="fas fa-gamepad"></i><div>Remove Game</div>
      </a>
     }
   })}
@@ -101,7 +101,7 @@ function GamePage () {
           </div>
           {categories.map((category) => (
             (category?.id == game?.category_id ? (
-              <span className='category'>{category.name}</span>
+              <span key={category.id} className='category'>{category.name}</span>
             ): null)
           ))}
         <div className='gameO-info'>
@@ -119,13 +119,13 @@ function GamePage () {
           <hr/>
         </span>
         {users.map((user) => (
-          <>
+          <div key={user.id}>
         {comments.map((comment) => (
           (comment?.game_id == game?.id && comment?.user_id == user?.id ? (
-            <GameComment comment={comment} user={user} />
+            <GameComment key={comment.id} comment={comment} user={user} />
             ): null)
             ))}
-          </>
+          </div>
         ))}
       </div>
     </>

@@ -85,13 +85,13 @@ function Profile () {
           </div>
           <div className='post'>
             {sortedPosts.map(post => (
-              <>
+              <div key={post.id}>
               {usersFriends.map(user => (
               (user?.id === post?.user_id ? (
-                <Post post={post} user={user} />
+                <Post key={user.id} post={post} user={user} />
               ) : null)
                 ))}
-                </>
+                </div>
     ))}
           </div>
         </div>
@@ -103,8 +103,8 @@ function Profile () {
           <div className='friends-inner'>          
           {friends.map((friend) => (
             (currentUser?.id !== friend?.id ? (
-              <>
-                <div key={friend?.id} className='friend'>
+              <div key={friend?.id}>
+                <div className='friend'>
                   <NavLink className='friend-div' to={`/users/${friend?.id}`}>
                     <img className='friend-img' src={friend?.avatar}/>
                   </NavLink>
@@ -115,7 +115,7 @@ function Profile () {
                   <span>
                     <hr/>
                   </span>
-            </>
+            </div>
             ): null) 
             ))}
             </div>

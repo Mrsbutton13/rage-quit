@@ -22,9 +22,9 @@ function PostForm() {
     setCreatedOn(moment(createdOn).format('MMMM Do YYYY, h:mm:ss a'))
     await dispatch(createPost({body, post_img, post_video, userId, createdOn}))
     await dispatch(getPost())
-    await setBody("")
-    await setPostImg(null)
-    await setPostVideo("")
+    setBody("")
+    setPostImg(null)
+    setPostVideo("")
   }
 
   const addImg = (e) => {
