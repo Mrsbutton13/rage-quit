@@ -16,8 +16,16 @@ const LoginForm = () => {
   
   const onLogin = async (e) => {
     e.preventDefault();
-    await dispatch(login({email, password}));
-    await dispatch((setCurrentUser()))
+    if(email && password) {
+      await dispatch(login({email, password}));
+      await dispatch((setCurrentUser()))
+    } else if(password) {
+      return setErrors(['Please provide an email'])
+    } else if (email){
+      return setErrors(['Please provide a password'])
+    } else {
+      return setErrors(['Invalid Email and or Username'])
+    }
   };
   
   const updateEmail = (e) => {
@@ -39,9 +47,9 @@ const LoginForm = () => {
       <form className='login-form' onSubmit={onLogin}>
       <div className='account'>Login</div>
       <div>
-      {errors.map((error) => (
-        <div>{error}</div>
-        ))}
+      {errors && (
+        <div className='errors'>{errors}</div>
+      )}
         </div>
         <div className='email-div'>
         <label className='email' htmlFor="email">Email</label>

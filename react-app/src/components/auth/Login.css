@@ -75,3 +75,7 @@
    text-shadow: 2px 3px #56503c;
    text-align: center;
 }
+
+.errors {
+  color: red;
+}

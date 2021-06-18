@@ -15,13 +15,20 @@ const SignUpForm = () => {
   const [gamertag, setGamertag] = useState("")
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [errors, setErrors] = useState([])
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+    if (password === repeatPassword && username && email) {
       const user = await dispatch(signUp({username, email, bio, avatar, gamertag, password}));
-      await dispatch(login(user))
       await dispatch(setCurrentUser())
+      await dispatch(login(user))
+    } else if(password === repeatPassword && username) {
+      return setErrors('Please provide an email') 
+    } else if (password === repeatPassword && email) {
+      return setErrors('Please provide a username')
+    } else {
+      return setErrors('Passwords must match')
     }
   };
 
@@ -59,9 +66,15 @@ const SignUpForm = () => {
   }
 
   return (
+    <>
     <div className='login-page'>
     <img className='login-img' src={background} />
     <form  className='login-form' onSubmit={onSignUp}>
+      {errors && (
+      <>
+      <div className='errors'>{errors}</div>
+      </>
+        )}
        <div className='account'>Signup</div>
       <div className='email-div'>
         <label className='email' >User Name</label>
@@ -137,6 +150,7 @@ const SignUpForm = () => {
       <button className='submit' type="submit">Sign Up</button>
     </form>
     </div>
+  </>
   );
 };
 

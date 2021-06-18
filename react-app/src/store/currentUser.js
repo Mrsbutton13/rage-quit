@@ -90,7 +90,9 @@ export const signUp = (user) => async (dispatch) => {
     return data
   }
   else {
-    console.log('Uh oh something went wrong.', response)
+    const data = await response.json()
+    console.log(data)
+    return data
   }
 }
 
