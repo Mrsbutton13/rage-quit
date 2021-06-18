@@ -14,7 +14,7 @@ function PostFormModal() {
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)} >
-          <PostForm/>
+          <PostForm />
         </Modal>
       )}
     </>

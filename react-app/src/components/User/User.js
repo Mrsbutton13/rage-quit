@@ -19,7 +19,7 @@ function User() {
   const currentUser = useSelector(state => state.currentUser.user)
   const friends = useSelector((state) => Object.values(state.userFriend))
   const user = useSelector((state) => state.otherUser.otherUser)
-  console.log(userFriends)
+  
   const { userId }  = useParams();
   const currentUserId = currentUser.id
   

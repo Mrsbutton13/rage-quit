@@ -5,7 +5,7 @@
   flex-direction: column;
   width: 485px;
   height: 555px;
-
+  align-items: center;
 }
 
 .post-title {
@@ -44,4 +44,17 @@ color: #424242;
 .create{
   margin-top: 3%;
   margin-left: 7%;
+}
+
+input[type='file'] {
+  margin-left: 135px
+}
+
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: 20px;
+  width: 400px;
 }

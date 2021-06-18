@@ -41,28 +41,28 @@ function PostComments({ post }) {
     {showComments && (
       <div className='post-comment-holder'>
       {postComments.map((comment) => (
-        <>
-        {users.map(user => (
-          (user?.id == comment?.user_id && post?.id == comment?.post_id ? (
-            <div className='postComment-container'>
-          <span>
-            <hr/>
-          </span>
-          <img className='postComment-user' src={user?.avatar} alt='user avatar'/>
-          <NavLink className='postComment-username' to={`/users/${user?.id}`}>
-            {user?.username}
-          </NavLink>
-          <div className='postComment-body'>
-            {comment?.body}
-          </div>
-          <span>
-            <hr/>
-          </span>
-          </div>
-          ):null)
-        ))}
-        </>
+        <div key={comment?.id}>
+          {users.map(user => (
+            (user?.id == comment?.user_id && post?.id == comment?.post_id ? (
+              <div className='postComment-container'>
+                <span>
+                  <hr/>
+                </span>
+                <img className='postComment-user' src={user?.avatar} alt='user avatar'/>
+                <NavLink className='postComment-username' to={`/users/${user?.id}`}>
+                  {user?.username}
+                </NavLink>
+                <div className='postComment-body'>
+                  {comment?.body}
+                </div>
+                <span>
+                  <hr/>
+                </span>
+              </div>
+            ):null)
           ))}
+        </div>
+        ))}
       </div>
     )}
     </>

@@ -8,7 +8,6 @@ const setOtherUserGame = (otherUserGame) => ({
 export const getOtherUserGame = (userId) => async(dispatch) => {
   const res = await fetch(`/api/games/${userId}`)
   const data = await res.json()
-  console.log(data)
   dispatch(setOtherUserGame(data.otherUserGame))
 }
 

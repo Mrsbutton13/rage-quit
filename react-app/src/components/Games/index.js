@@ -60,8 +60,6 @@ function Home () {
 export const CategorizedGames = () => {
   const games = useSelector((state) => Object.values(state.game))
   const genres = useSelector((state) => Object.values(state.genre))
-  console.log(genres)
-  console.log(games)
 
   useEffect(async () => {
     await getGames()
@@ -72,11 +70,9 @@ export const CategorizedGames = () => {
     <>
     <div className='popular'>
       {games.map(game => (
-        <>
         <div  key={game.id} className='game-container'>
           <Game key={game.id} game={game}/>
         </div>
-        </>
     ))}
     </div>
     </>

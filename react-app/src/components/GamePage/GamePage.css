@@ -30,14 +30,16 @@
 
 
 .game-pic{
-  width: 20%;
+  width: auto;
   height: 500px;
+  max-width: 420px;
   margin: auto;
   margin-top: 45px;
   z-index: 1;
   box-shadow: 0 8px 8px 2px rgb(0 0 0 / 20%);
   margin-bottom: 10%;
-  margin-left: 30%;
+  margin-left: 24%;
+  border: 1px solid #b38cfb;
 }
 
 .game-form{

@@ -17,7 +17,6 @@ function Profile () {
   const friends = useSelector((state) => Object.values(state.currentUsersFriend))
   const userGames = useSelector((state) => Object.values(state.currentUserGame))
   const posts = useSelector((state) => Object.values(state.post))
-  console.log(posts)
   
   let usersFriends = []
   if(friends.length <= 0) {
@@ -29,7 +28,6 @@ function Profile () {
   }
 
   const sortedPosts = posts.sort((a,b) => a.created_on < b.created_on ? 1: -1)
-  console.log(sortedPosts)
   useEffect(async() => {
    await dispatch(setCurrentUser())
    await dispatch(getCurrentUserGames())

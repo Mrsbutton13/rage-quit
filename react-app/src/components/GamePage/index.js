@@ -43,10 +43,10 @@ function GamePage () {
     }
     if(!newGameId) {
       newGame = 
-      <GameButton/>
+      <GameButton key={userGame.id}/>
     } else {
       newGame = 
-      <a className='delete-game' onClick={() => deleteAGame(newGameId)}>
+      <a key={userGame.id} className='delete-game' onClick={() => deleteAGame(newGameId)}>
      <i class="fas fa-gamepad"></i><div>Remove Game</div>
      </a>
     }

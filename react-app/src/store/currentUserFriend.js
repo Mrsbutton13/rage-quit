@@ -9,7 +9,6 @@ const setCurrentFriend = (currentUsersFriend) => ({
 export const getFriend = () => async(dispatch) => {
   const res = await fetch(`/api/friends/currentUser`)
   const data = await res.json()
-  console.log(data)
   dispatch(setCurrentFriend(data.currentUsersFriend))
 }
 

@@ -11,7 +11,6 @@ function UsersList() {
   const [loaded, setLoaded] = useState(false)
   
 
-  console.log(users)
 
   useEffect( () => {
    dispatch(getUser())

@@ -2,7 +2,7 @@
   width: 600px;
   height: max-content;
   box-shadow: 0 8px 8px 2px rgb(0 0 0 / 20%);
-  background-color: #b38cfb;
+  background-color: #424242;
   padding: 20px;
   margin: auto;
   margin-bottom: 80px;
@@ -10,6 +10,7 @@
 
 .username {
   margin-left: 10px;
+
 }
 
 .user-ava {
@@ -21,6 +22,7 @@
   margin-left: 20%;
   font-family: 'RocknRoll One',
   sans-serif;
+  color: #b38cfb;
 }
 
 
