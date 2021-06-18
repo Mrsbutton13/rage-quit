@@ -13,7 +13,6 @@ import WOW from '../../images/WOW.png'
 import Fortnite from '../../images/Fortnite.png'
 import logo from '../../images/logo.png'
 import { NavLink } from 'react-router-dom'
-import Footer from '../Footer'
 
 function SplashPage() {
   const dispatch = useDispatch()
@@ -53,13 +52,15 @@ function SplashPage() {
         <img className='info-logo' src={logo}/>
         <span className='welcome'>Welcome to Rage-Quit! Where gamers alike can get to know each other, befriend each other, and game with each other. Find gamers who like the same games you like and play on the same platforms you play on. Get your gaming on!</span>
       </div>
+      <span >
+        <hr className='splash-span'/>
+      </span>
 
       <div className='container'> 
         <CategoriezedGames />
       </div>
     </>
     )}
-    <Footer />
     </>
   )
 }

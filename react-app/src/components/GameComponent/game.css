@@ -5,8 +5,8 @@
   box-sizing: border-box;
   box-shadow: 0 8px 8px 2px rgb(0 0 0 / 20%);
   margin-left: 5px;
-  background-color: #b38cfb;
   margin-bottom: 2%;
+  background-color: #424242;
 }
 
 .game-img {
@@ -29,5 +29,9 @@
 
 .title {
   font-size: 30px;
-  color: black;
+  color: #b38cfb;
+}
+
+.splash-span {
+  margin-top: 50px;
 }

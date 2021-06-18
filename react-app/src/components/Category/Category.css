@@ -3,6 +3,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin: 2%;
+  margin-top: 0%;
+  margin-bottom: 0%;
 }
 
 .category-titlel{
