@@ -70,7 +70,7 @@ let userLinks
     <span>
         <hr/>
       </span>
-      <div>
+      <div className='postComments'>
         <PostComments post={post} user={user}/>
       </div>
     </div>

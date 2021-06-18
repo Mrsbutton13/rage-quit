@@ -19,8 +19,8 @@ function PostComment({ post }) {
       body
     }
     await dispatch(createPComment(postComment))
-    await dispatch(getPComment())
     setBody('')
+    await dispatch(getPComment())
   }
 
   return (

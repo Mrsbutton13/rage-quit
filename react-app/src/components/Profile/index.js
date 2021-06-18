@@ -17,7 +17,7 @@ function Profile () {
   const friends = useSelector((state) => Object.values(state.currentUsersFriend))
   const userGames = useSelector((state) => Object.values(state.currentUserGame))
   const posts = useSelector((state) => Object.values(state.post))
-  
+
   useEffect(async() => {
    await dispatch(setCurrentUser())
    await dispatch(getCurrentUserGames())
@@ -90,10 +90,10 @@ function Profile () {
           <span className='user-span'>
             <hr/>
           </span>
+          <div className='friends-inner'>          
           {friends.map((friend) => (
             (currentUser?.id !== friend?.id ? (
-              <div key={friend.id} className='friends-inner'>          
-            <> 
+              <>
                 <div key={friend?.id} className='friend'>
                   <NavLink className='friend-div' to={`/users/${friend?.id}`}>
                     <img className='friend-img' src={friend?.avatar}/>
@@ -106,9 +106,9 @@ function Profile () {
                     <hr/>
                   </span>
             </>
-          </div>
             ): null) 
             ))}
+            </div>
         </div>
       </div>
       </>

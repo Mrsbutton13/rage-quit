@@ -1,0 +1,180 @@
+.main-container {
+ display: flex;
+ flex-direction: row;
+ height: 100vh;
+}
+
+.user-pic {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+}
+
+.welcome-user{
+  font-family: 'RocknRoll One',
+  sans-serif;
+  font-size: 25px;
+  height: fit-content;
+  margin-left: 10px;
+  color: #b38cfb;
+}
+
+.gamertag{
+  font-family: 'RocknRoll One',
+  sans-serif;
+  font-size: 25px;
+}
+.links {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: #424242;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 20px;
+
+}
+
+.link-icons {
+  display: flex;
+  flex-direction: column;
+}
+
+.link-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.fa-user-edit,
+.fa-home,
+.fa-user {
+  color: #b38cfb;
+  font-size: 50px;
+  background-color: #424242;
+  margin-left: 25px;
+  margin-bottom: 20px;
+}
+
+
+.edit,
+.home,
+.public {
+  margin-left: 10px;
+  font-size: 25px;
+  margin-bottom: 18px;
+  height: 50px;
+  color: #b38cfb;
+  margin-top: 7px;
+}
+
+.profile-container {
+  background-color: #424242;
+  width: 25%;
+  height: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  padding: 5%;
+  width: 100%;
+  align-items: center;
+  background-color: #424242;
+  height: 100px;
+}
+
+.user-span{
+  width: 100%;
+  background-color: #424242;
+}
+
+.add-post {
+  background-color: #424242;
+  height: 100px;
+}
+
+.posts {
+  width: 50%;
+  height: 100%;
+  max-height: 100%;
+}
+
+.post {
+  overflow-y: scroll;
+  height: fit-content;
+  max-height: 90%;
+}
+
+.user-title,
+.friend-title {
+  font-family: 'RocknRoll One',
+  sans-serif;
+  margin-top: 30px;
+  color: #b38cfb;
+  padding-bottom: 10px;
+}
+
+.your-games {
+  text-align: center;
+  width: 100%;
+  background-color: #424242;
+  margin-left: 2px;
+  margin-right: 2px;
+  height: 67%;
+}
+
+.inner-games {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 10px;
+  overflow-y: scroll;
+  height: 92%;
+}
+
+.friends-div {
+  background-color: #424242;
+  width: 25%;
+  height: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #b38cfb;
+}
+
+.friends-inner::-webkit-scrollbar,
+.inner-games::-webkit-scrollbar,
+.post::-webkit-scrollbar {
+  display: none;
+}
+
+.friends-inner {
+  display: flex;
+  flex-direction:inherit;
+  width: 90%;
+  overflow-y: scroll;
+}
+
+.friend-img{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.friend-div{
+  width: 50%;
+  height: 50%;
+}
+
+.friend{
+  height: 85px;
+  margin-left: 20px;
+
+}
