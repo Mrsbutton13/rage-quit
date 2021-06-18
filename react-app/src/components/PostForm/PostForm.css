@@ -46,7 +46,7 @@ color: #424242;
   margin-left: 7%;
 }
 
-input[type='file'] {
+.image-input{
   margin-left: 135px
 }
 
