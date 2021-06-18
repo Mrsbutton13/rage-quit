@@ -25,20 +25,34 @@ export const deletePost = (postId) => async() => {
 export const getPost = () => async (dispatch) => {
   const res = await fetch('/api/posts')
   const data = await res.json()
+  console.log(data)
   dispatch(setPost(data.post))
 }
 
 export const createPost = (post) => async(dispatch) => {
-  const { user_Id, body, createdOn } = post
+  const { user_Id, body, post_img, post_video, createdOn } = post
+  const formData = new FormData()
+  formData.append('user_id', user_Id)
+  formData.append('body', body)
+  formData.append('createdOn', createdOn)
+  if(post_video) formData.append('post_video', post_video)
+  if(post_img) formData.append('post_img', post_img)
+  // const res = await fetch('/api/posts', {
+  //   method: 'POST',
+  //   headers: {"Content-Type": "application/json"},
+  //   body: JSON.stringify({
+  //     user_Id,
+  //     body,
+  //     post_img,
+  //     postVideo,
+  //     createdOn
+  //   }),
+  // });
+
   const res = await fetch('/api/posts', {
     method: 'POST',
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({
-      user_Id,
-      body,
-      createdOn
-    }),
-  });
+    body: formData,
+  })
 
   if(res.ok) {
     const data = await res.json()

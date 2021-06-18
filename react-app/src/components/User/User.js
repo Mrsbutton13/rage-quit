@@ -19,12 +19,18 @@ function User() {
   const currentUser = useSelector(state => state.currentUser.user)
   const friends = useSelector((state) => Object.values(state.userFriend))
   const user = useSelector((state) => state.otherUser.otherUser)
-
+  console.log(userFriends)
   const { userId }  = useParams();
   const currentUserId = currentUser.id
   
   let friendId
   let newFriend
+  if(userFriends.length === 0) {
+    newFriend = 
+      <>
+        <FriendButton />
+      </>
+  }
   {userFriends.map(userFriend => {
     if((userFriend?.friend_id == userId && currentUserId == userFriend?.user_id) || 
     (userFriend?.user_id == userId && currentUserId == userFriend?.friend_id)){
@@ -128,7 +134,7 @@ function User() {
           </span>
           <div className='innerU-games'>
           {otherUserGames.map(game => (
-               < UserGame key={game.id} game={game} />
+               <UserGame key={game.id} game={game} />
           ))} 
           </div>
         </div>

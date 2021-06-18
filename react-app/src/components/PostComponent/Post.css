@@ -38,3 +38,16 @@
    sans-serif;
    color: #b38cfb;
 }
+
+.post-img{
+  width: 90%;
+  height: 50%;
+}
+
+.image-holder {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  margin-top: 25px;
+}

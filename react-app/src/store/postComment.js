@@ -18,8 +18,8 @@ const removePComment = () => ({
 })
 
 
-export const deletePComment = (postCommentId) => async() => {
-  await fetch (`/api/posts/postComment/${postCommentId}`, {method: 'DELETE'})
+export const deletePComment = (postId) => async() => {
+  await fetch (`/api/posts/postComment/${postId}`, {method: 'DELETE'})
 }
 
 export const getPComment = () => async (dispatch) => {

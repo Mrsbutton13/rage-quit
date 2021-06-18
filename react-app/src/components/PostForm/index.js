@@ -14,21 +14,32 @@ function PostForm() {
 
 
   const [body, setBody] = useState('')
+  const [post_img, setPostImg] = useState(null)
+  const [post_video, setPostVideo] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setCreatedOn(moment(createdOn).format('MMMM Do YYYY, h:mm:ss a'))
-    const post = {
-      body,
-      userId,
-      createdOn
-    }
-    await dispatch(createPost(post))
+    await dispatch(createPost({body, post_img, post_video, userId, createdOn}))
     await dispatch(getPost())
     await setBody("")
-    
+    await setPostImg(null)
+    await setPostVideo("")
   }
 
+  const addImg = (e) => {
+    const image = e.target.files[0]
+    setPostImg(image)
+  }
+  
+  const updateBody = (e) => {
+    setBody(e.target.value)
+  }
+
+  const updateVideo = (e) => {
+    const video = e.target.files[0]
+    setPostVideo(video)
+  }
 
   return (
     <>
@@ -38,9 +49,16 @@ function PostForm() {
           className='post-input' 
           value={body}
           type='text' 
-          onChange={(e) => setBody(e.target.value)}
+          onChange={updateBody}
           placeholder='What cha thinking?' >
           </textarea>
+          <input 
+          className='image-input'
+          type='file'
+          name='postImg'
+          accept='image/*'
+          onChange={addImg}
+          ></input>
           <button className='post-button' type='submit' value='submit'>
             <i className="far fa-share-square"></i>
           </button>
