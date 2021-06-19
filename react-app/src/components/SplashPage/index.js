@@ -50,7 +50,7 @@ function SplashPage() {
   
       <div className='info'>
         <img className='info-logo' src={logo}/>
-        <span className='welcome'>Welcome to Rage-Quit! Where gamers alike can get to know each other, befriend each other, and game with each other. Find gamers who like the same games you like and play on the same platforms you play on. Get your gaming on!</span>
+        <span className='welcome'>Welcome to Rage-Quit! Where gamers alike can get to know each other, befriend each other, and game with each other. Find gamers who like the same games you like, get your gaming on!</span>
       </div>
       <span >
         <hr className='splash-span'/>
