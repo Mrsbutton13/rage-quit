@@ -1,6 +1,6 @@
 # Rage-Quit
 
-## Live Link: 
+## Live Link: [RageQuit](https://ragequit.herokuapp.com/)
 As a video game player it is often hard to find someone to game with. This site was inspired for that. Being able to find people who enjoy the same games as you and budding up, and playing together. Users can add another user. Users can add to their profile. Users can post what they are up to. Users can also post images. Users can comment on games. Users can comment on posts. 
 
 
